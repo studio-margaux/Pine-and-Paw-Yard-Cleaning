@@ -70,6 +70,22 @@
     .photo-hero .photo-inner,.photo-mid .photo-inner,.photo-end .photo-inner{aspect-ratio:4/3;}
   }
 
+  /* ---------- ACCORDIONS ---------- */
+  details.accordion{border:1px solid var(--line);border-radius:18px;background:var(--white);overflow:hidden;}
+  details.accordion + details.accordion{margin-top:16px;}
+  details.accordion summary{cursor:pointer;list-style:none;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  details.accordion summary::-webkit-details-marker{display:none;}
+  .accordion-heading{display:flex;flex-direction:column;gap:6px;}
+  .accordion-title{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--pine-deep);}
+  .accordion-icon{flex-shrink:0;width:28px;height:28px;border-radius:999px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Inter';font-weight:400;font-size:18px;color:var(--honey-deep);transition:transform .25s ease;}
+  details.accordion[open] .accordion-icon{transform:rotate(45deg);}
+  .accordion-body{padding:0 26px 26px;}
+
+  /* ---------- MOBILE FULL-WIDTH QUOTE CTAS ---------- */
+  @media(max-width:640px){
+    .btn-quote{width:100%;}
+  }
+
   /* ---------- SECTIONS ---------- */
   section{padding:60px 0;}
   .section-head{max-width:620px;margin-bottom:36px;}
@@ -183,6 +199,19 @@
   </nav>
 </header>
 
+<script>
+  function openAccordionFor(hash){
+    var el = document.querySelector(hash);
+    if(el && el.tagName === 'DETAILS'){ el.open = true; }
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(){
+      openAccordionFor(link.getAttribute('href'));
+    });
+  });
+  if(window.location.hash){ openAccordionFor(window.location.hash); }
+</script>
+
 <main id="top">
 
   <!-- HERO — no CTA button here per latest direction -->
@@ -228,18 +257,23 @@
         </div>
       </div>
       <div class="steps-cta">
-        <a href="#quote" class="btn btn-ghost btn-sm">Start your quote</a>
+        <a href="#quote" class="btn btn-ghost btn-sm btn-quote">Start your quote</a>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- PRICING & ADD-ONS (accordion) -->
   <section id="pricing">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Pricing</span>
-        <h2>Simple, upfront pricing.</h2>
-      </div>
+      <details class="accordion">
+        <summary>
+          <span class="accordion-heading">
+            <span class="eyebrow">Pricing</span>
+            <span class="accordion-title">Simple, upfront pricing.</span>
+          </span>
+          <span class="accordion-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="accordion-body">
       <div class="price-table-wrap">
         <table class="price-table">
           <thead>
@@ -275,23 +309,27 @@
       </div>
       <div class="price-note mono">+ $8–15/mo for large or wooded yards · + $15/mo winter surcharge, Dec–Mar</div>
       <div class="pricing-cta">
-        <a href="#quote" class="btn btn-honey btn-sm">Get my price</a>
+        <a href="#quote" class="btn btn-honey btn-sm btn-quote">Get my price</a>
       </div>
-    </div>
-  </section>
+        </div>
+      </details>
 
-  <!-- ADD-ONS -->
-  <section id="addons">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Add-ons</span>
-        <h2>Extra touches, when you want them</h2>
-      </div>
+      <details class="accordion" id="addons">
+        <summary>
+          <span class="accordion-heading">
+            <span class="eyebrow">Add-ons</span>
+            <span class="accordion-title">Extra touches, when you want them</span>
+          </span>
+          <span class="accordion-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="accordion-body">
       <div class="addons">
         <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that neutralizes odor and keeps your grass smelling fresh between visits. +$15/visit.</p></div>
         <div class="addon"><h4>Patio & deck hosing</h4><p>We hose down patios and decks after cleanup — great for smaller urban lots. +$12/visit.</p></div>
         <div class="addon"><h4>Kennel & run cleanup</h4><p>Dedicated cleaning for doghouse or kennel areas. +$8/visit.</p></div>
       </div>
+        </div>
+      </details>
     </div>
   </section>
 
