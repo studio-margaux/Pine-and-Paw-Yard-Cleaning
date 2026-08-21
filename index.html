@@ -59,6 +59,17 @@
   .trust-strip{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-family:'IBM Plex Mono';color:var(--pine);}
   .trust-strip span{background:var(--white);border:1px solid var(--line);padding:6px 12px;border-radius:999px;}
 
+  /* ---------- PHOTOS (full-bleed, letterboxed on wide screens) ---------- */
+  .photo-section{width:100%;background:var(--pine-deep);padding:0;}
+  .photo-inner{max-width:1600px;margin:0 auto;overflow:hidden;}
+  .photo-inner img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-hero .photo-inner{aspect-ratio:21/8;}
+  .photo-mid .photo-inner{aspect-ratio:21/9;}
+  .photo-end .photo-inner{aspect-ratio:21/9;}
+  @media(max-width:640px){
+    .photo-hero .photo-inner,.photo-mid .photo-inner,.photo-end .photo-inner{aspect-ratio:4/3;}
+  }
+
   /* ---------- SECTIONS ---------- */
   section{padding:60px 0;}
   .section-head{max-width:620px;margin-bottom:36px;}
@@ -184,6 +195,12 @@
     </div>
   </section>
 
+  <section class="photo-section photo-hero">
+    <div class="photo-inner">
+      <img src="pine-paw-hero.png" alt="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch">
+    </div>
+  </section>
+
   <div class="wrap"><hr class="rule"></div>
 
   <!-- HOW IT WORKS -->
@@ -275,6 +292,12 @@
         <div class="addon"><h4>Patio & deck hosing</h4><p>We hose down patios and decks after cleanup — great for smaller urban lots. +$12/visit.</p></div>
         <div class="addon"><h4>Kennel & run cleanup</h4><p>Dedicated cleaning for doghouse or kennel areas. +$8/visit.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section class="photo-section photo-mid">
+    <div class="photo-inner">
+      <img src="pine-paw-crew.png" alt="A Pine & Paw Yard Cleaning crew member entering a client's backyard through the gate">
     </div>
   </section>
 
@@ -560,6 +583,12 @@
           showStep(1);
         })();
       </script>
+    </div>
+  </section>
+
+  <section class="photo-section photo-end">
+    <div class="photo-inner">
+      <img src="pine-paw-dog.png" alt="A calm golden retriever sitting in a tidy St. Paul backyard">
     </div>
   </section>
 
