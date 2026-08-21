@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pine & Paw Yard Cleaning | Dog Waste Removal & Yard Sanitation — St. Paul, MN & Twin Cities</title>
+<meta name="description" content="Dog Waste Removal & Yard Sanitation — St. Paul, MN & Twin Cities. Locally owned, no contracts, year-round service.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#1F3B2F;
+    --pine-deep:#16281F;
+    --paper:#F6F2E8;
+    --honey:#C99A5C;
+    --honey-deep:#A97C3F;
+    --sage:#8CA089;
+    --ink:#28241E;
+    --line:#E4DCC8;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.display{font-family:'Fraunces',serif;font-weight:600;color:var(--pine-deep);line-height:1.1;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:3px solid var(--honey);outline-offset:3px;}
+
+  /* ---------- HEADER ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,242,232,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-mark{height:38px;width:auto;}
+  .logo-text{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--pine-deep);}
+  .nav-links{display:none;gap:30px;font-size:15px;font-weight:500;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--ink);opacity:0.8;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  @media(min-width:860px){.nav-links{display:flex;}}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Inter';font-weight:600;font-size:14.5px;padding:12px 24px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:all .18s;}
+  .btn-solid{background:var(--pine-deep);color:var(--paper);}
+  .btn-solid:hover{background:var(--pine);}
+  .btn-ghost{background:transparent;color:var(--pine-deep);border-color:var(--pine-deep);}
+  .btn-ghost:hover{background:var(--pine-deep);color:var(--paper);}
+  .btn-honey{background:var(--honey);color:var(--pine-deep);}
+  .btn-honey:hover{background:var(--honey-deep);color:var(--paper);}
+  .btn-sm{padding:9px 18px;font-size:13.5px;}
+
+  /* ---------- HERO (text only, no imagery per brand direction) ---------- */
+  .hero{padding:76px 0 56px;}
+  .hero-inner{max-width:680px;}
+  .eyebrow{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--sage);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;display:block;}
+  .hero h1{font-size:clamp(38px,6vw,60px);margin-bottom:20px;}
+  .hero p.lead{font-size:18px;max-width:50ch;color:#4a4436;margin-bottom:30px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px;}
+  .trust-strip{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-family:'IBM Plex Mono';color:var(--pine);}
+  .trust-strip span{background:var(--white);border:1px solid var(--line);padding:6px 12px;border-radius:999px;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:60px 0;}
+  .section-head{max-width:620px;margin-bottom:36px;}
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{font-size:clamp(28px,4vw,38px);}
+  .section-head p{color:#4a4436;font-size:16px;margin-top:12px;}
+  hr.rule{border:none;border-top:1px solid var(--line);margin:0 0 60px;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .steps{display:grid;gap:24px;margin-bottom:32px;}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);}}
+  .step{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px 24px;}
+  .step .num{font-family:'IBM Plex Mono';color:var(--sage);font-size:13px;display:block;margin-bottom:10px;}
+  .step h3{font-size:20px;font-weight:600;margin-bottom:8px;color:var(--pine-deep);}
+  .step p{font-size:14.5px;color:#4a4436;}
+  .steps-cta{text-align:center;}
+
+  /* ---------- PRICING TABLE ---------- */
+  .price-table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:var(--white);}
+  .price-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px;}
+  .price-table th,.price-table td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--line);}
+  .price-table th{font-family:'IBM Plex Mono';font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;color:var(--sage);background:var(--paper);}
+  .price-table tbody tr:last-child td{border-bottom:none;}
+  .price-table tbody tr.featured{background:#FBF7EE;}
+  .price-table td.plan-name{font-family:'Fraunces';font-weight:600;color:var(--pine-deep);font-size:16px;}
+  .price-table td.plan-name .tag{display:block;font-family:'IBM Plex Mono';font-size:10.5px;color:var(--honey-deep);text-transform:uppercase;letter-spacing:0.05em;margin-top:2px;}
+  .price-table td.amt{font-family:'IBM Plex Mono';color:var(--pine);}
+  .price-table td.amt-sub{font-family:'IBM Plex Mono';color:#7d735d;font-size:13.5px;}
+  .pricing-footnote{margin-top:20px;font-size:13.5px;color:#5a5245;}
+  .pricing-cta{margin-top:24px;}
+
+  /* ---------- ADD-ONS ---------- */
+  .addons{display:grid;gap:14px;}
+  @media(min-width:700px){.addons{grid-template-columns:repeat(3,1fr);}}
+  .addon{border:1px solid var(--line);background:var(--white);border-radius:14px;padding:20px 22px;}
+  .addon h4{font-size:15.5px;font-weight:600;color:var(--pine-deep);margin-bottom:6px;font-family:'Inter';}
+  .addon p{font-size:13.5px;color:#5a5245;}
+
+  /* ---------- QUOTE QUESTIONNAIRE ---------- */
+  .quote-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:36px;max-width:680px;box-shadow:0 24px 48px -30px rgba(31,59,47,0.28);}
+  .quote-progress{display:flex;gap:6px;margin-bottom:28px;}
+  .quote-progress span{height:4px;flex:1;background:var(--line);border-radius:999px;transition:background .2s;}
+  .quote-progress span.done{background:var(--honey);}
+  .quote-step{display:none;}
+  .quote-step.active{display:block;animation:fadein .25s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .quote-question{font-family:'Fraunces';font-weight:600;font-size:22px;color:var(--pine-deep);margin-bottom:18px;}
+  .quote-options{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-bottom:8px;}
+  .quote-options.single-col{grid-template-columns:1fr;}
+  .quote-opt{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;font-family:'Inter';font-size:14.5px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left;transition:all .15s;position:relative;}
+  .quote-opt:hover{border-color:var(--honey);}
+  .quote-opt.selected{border-color:var(--pine);background:#EEF2EA;}
+  .quote-opt .sub{display:block;font-size:12px;color:#7d735d;font-weight:400;margin-top:2px;}
+  .quote-opt .badge{display:inline-block;font-family:'IBM Plex Mono';font-size:10px;color:var(--honey-deep);text-transform:uppercase;letter-spacing:0.04em;margin-left:6px;}
+  .quote-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
+  .quote-back{background:none;border:none;color:#7d735d;font-family:'Inter';font-size:14px;cursor:pointer;padding:8px;}
+  .quote-back:disabled{visibility:hidden;}
+  .quote-next{opacity:0.4;pointer-events:none;}
+  .quote-next.enabled{opacity:1;pointer-events:auto;}
+
+  .quote-result h3{font-family:'Fraunces';font-size:22px;font-weight:600;color:var(--pine-deep);margin-bottom:18px;}
+  .quote-breakdown{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:22px;font-family:'IBM Plex Mono';font-size:14px;}
+  .quote-breakdown .line{display:flex;justify-content:space-between;padding:5px 0;color:#4a4436;}
+  .quote-breakdown .total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px solid var(--line);font-weight:600;color:var(--pine-deep);font-size:16px;}
+  .quote-contact .field{margin-bottom:16px;}
+  .quote-contact label{display:block;font-size:13px;font-weight:600;color:var(--pine-deep);margin-bottom:6px;}
+  .quote-contact input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:'Inter';font-size:15px;background:var(--paper);color:var(--ink);}
+  .quote-contact input:focus{outline:3px solid var(--honey);outline-offset:0;border-color:var(--honey);}
+  .book-btn{width:100%;font-size:15.5px;padding:15px 24px;}
+  .book-note{font-size:12.5px;color:#7d735d;margin-top:10px;text-align:center;}
+
+  [data-fs-success]:empty,[data-fs-error]:empty{display:none;}
+  [data-fs-success]{background:var(--sage);color:var(--pine-deep);border-radius:14px;padding:16px 20px;font-size:14.5px;font-weight:500;margin-bottom:18px;}
+  [data-fs-error]{background:#F3D9D9;color:#7A2E2E;border-radius:12px;padding:12px 16px;font-size:13.5px;margin-bottom:16px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--pine-deep);color:#c9d2c3;padding:48px 0 28px;margin-top:20px;}
+  .footer-grid{display:grid;gap:28px;margin-bottom:32px;}
+  @media(min-width:760px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr;}}
+  footer h4{color:var(--paper);font-size:13px;text-transform:uppercase;letter-spacing:0.06em;font-family:'IBM Plex Mono';margin-bottom:12px;}
+  footer p,footer li{font-size:13.5px;color:#a7b09f;}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  footer .area-list{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:13px;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--paper);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.12);padding-top:20px;font-size:12px;color:#7c8875;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav wrap">
+    <a href="#top" class="logo">
+      <img class="logo-mark" src="pine-and-paw-logo.svg" alt="Pine & Paw Yard Cleaning">
+      <span class="logo-text">Pine &amp; Paw</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#addons">Add-ons</a></li>
+    </ul>
+    <a href="#quote" class="btn btn-solid">Get a Quote</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO — text only, no imagery in the body -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">St. Paul, MN & Twin Cities — year-round service</span>
+      <h1>Your yard, minus the mess.</h1>
+      <p class="lead">Dog waste removal & yard sanitation for St. Paul homes. Locally owned, no contracts, working through every Minnesota season — including the snowy ones.</p>
+      <div class="hero-ctas">
+        <a href="#quote" class="btn btn-honey">Get a Free Quote</a>
+      </div>
+      <div class="trust-strip">
+        <span>No contracts</span>
+        <span>Locally owned</span>
+        <span>Year-round MN service</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps to a clean yard</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <h3>Get a quote</h3>
+          <p>Tell us your address, dog count, and how often you want us — takes under a minute.</p>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <h3>We clean, on schedule</h3>
+          <p>Every other week, weekly, twice a week, or a one-time deep clean. Rain, shine, or snow.</p>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <h3>You get a text</h3>
+          <p>A heads-up after every visit — so you always know your yard's been handled.</p>
+        </div>
+      </div>
+      <div class="steps-cta">
+        <a href="#quote" class="btn btn-ghost btn-sm">Start your quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple, upfront pricing.</h2>
+        <p>Base rate for a standard yard. See your exact price, dogs and all, in 60 seconds.</p>
+      </div>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <thead>
+            <tr><th>Plan</th><th>Visits/mo</th><th>1 Dog</th><th>Each additional dog</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="plan-name">Every Other Week</td>
+              <td class="amt-sub">2</td>
+              <td class="amt">$50–60/mo</td>
+              <td class="amt-sub">+$10/mo</td>
+            </tr>
+            <tr class="featured">
+              <td class="plan-name">Weekly<span class="tag">Most popular</span></td>
+              <td class="amt-sub">4</td>
+              <td class="amt">$75–85/mo</td>
+              <td class="amt-sub">+$20/mo</td>
+            </tr>
+            <tr>
+              <td class="plan-name">Twice a Week</td>
+              <td class="amt-sub">8</td>
+              <td class="amt">$110–130/mo</td>
+              <td class="amt-sub">+$40/mo</td>
+            </tr>
+            <tr>
+              <td class="plan-name">One-Time</td>
+              <td class="amt-sub">1 visit</td>
+              <td class="amt">$89–149</td>
+              <td class="amt-sub">+$8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-footnote">Large or wooded yards may add a small fee — your exact price is calculated in the quote below. 3+ dogs? The quote below will get you an exact number.</p>
+      <div class="pricing-cta">
+        <a href="#quote" class="btn btn-honey btn-sm">Get my price</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section id="addons">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Add-ons</span>
+        <h2>Extra touches, when you want them</h2>
+      </div>
+      <div class="addons">
+        <div class="addon"><h4>Yard deodorizing</h4><p>Pet-safe sanitizing spray, especially useful in humid summer months. +$15/visit.</p></div>
+        <div class="addon"><h4>Patio & deck hosing</h4><p>Popular with smaller urban lots around Highland Park and Mac-Groveland. +$12/visit.</p></div>
+        <div class="addon"><h4>Winter service</h4><p>Snow displacement to locate and clear waste through a Minnesota winter. +$15/mo, Dec–Mar.</p></div>
+        <div class="addon"><h4>Kennel & run cleanup</h4><p>Dedicated cleaning for doghouse or kennel areas. +$8/visit.</p></div>
+        <div class="addon"><h4>Compostable bags</h4><p>Upgrade to flushable/compostable waste bags. +$6/mo.</p></div>
+        <div class="addon"><h4>Waste station service</h4><p>For communities: bin emptying, liner replacement, and bag restocking. From $50/station/mo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- QUOTE QUESTIONNAIRE -->
+  <section id="quote">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Get a quote</span>
+        <h2>Let's build your quote.</h2>
+        <p>Answer a few quick questions — we'll do the math.</p>
+      </div>
+
+      <div data-fs-success class="form-success"></div>
+
+      <div class="quote-card">
+        <div class="quote-progress">
+          <span class="p-dot done" data-dot="1"></span>
+          <span class="p-dot" data-dot="2"></span>
+          <span class="p-dot" data-dot="3"></span>
+          <span class="p-dot" data-dot="4"></span>
+          <span class="p-dot" data-dot="5"></span>
+        </div>
+
+        <!-- STEP 1: dogs -->
+        <div class="quote-step active" data-step="1">
+          <div class="quote-question">How many dogs keep you busy?</div>
+          <div class="quote-options" data-group="dogs">
+            <button type="button" class="quote-opt" data-value="1">1 dog</button>
+            <button type="button" class="quote-opt" data-value="2">2 dogs</button>
+            <button type="button" class="quote-opt" data-value="3">3 dogs</button>
+            <button type="button" class="quote-opt" data-value="4">4+ dogs</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: frequency -->
+        <div class="quote-step" data-step="2">
+          <div class="quote-question">How often should we come by?</div>
+          <div class="quote-options single-col" data-group="frequency">
+            <button type="button" class="quote-opt" data-value="weekly">Weekly <span class="badge">Most popular</span></button>
+            <button type="button" class="quote-opt" data-value="twice">Twice a Week</button>
+            <button type="button" class="quote-opt" data-value="eow">Every Other Week</button>
+            <button type="button" class="quote-opt" data-value="onetime">One-Time</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: yard -->
+        <div class="quote-step" data-step="3">
+          <div class="quote-question">How's your yard?</div>
+          <div class="quote-options single-col" data-group="yard">
+            <button type="button" class="quote-opt" data-value="standard">Standard size</button>
+            <button type="button" class="quote-opt" data-value="large">Large or wooded <span class="sub">Takes a bit more time</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 4: extras -->
+        <div class="quote-step" data-step="4">
+          <div class="quote-question">Want any extras?</div>
+          <div class="quote-options single-col" data-group="extras" data-multi="true">
+            <button type="button" class="quote-opt" data-value="deodorize">Yard deodorizing</button>
+            <button type="button" class="quote-opt" data-value="patio">Patio & deck hosing</button>
+            <button type="button" class="quote-opt" data-value="winter">Winter service (Dec–Mar)</button>
+            <button type="button" class="quote-opt" data-value="kennel">Kennel / run cleanup</button>
+            <button type="button" class="quote-opt" data-value="bags">Compostable bags</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: result + booking -->
+        <div class="quote-step" data-step="5">
+          <div class="quote-result">
+            <h3>Here's your price</h3>
+            <div class="quote-breakdown" id="quote-breakdown"></div>
+
+            <form id="quote-form" class="quote-contact">
+              <div data-fs-error class="form-error" data-fs-error-form></div>
+              <div class="field">
+                <label for="q-name">Name</label>
+                <input id="q-name" name="name" type="text" data-fs-field required>
+              </div>
+              <div class="field">
+                <label for="q-phone">Phone</label>
+                <input id="q-phone" name="phone" type="tel" data-fs-field required>
+              </div>
+              <div class="field">
+                <label for="q-address">Address / neighborhood</label>
+                <input id="q-address" name="address" type="text" placeholder="e.g. Como, St. Paul" data-fs-field required>
+              </div>
+              <input type="hidden" name="quote_summary" id="q-summary">
+              <button type="submit" class="btn btn-solid book-btn" data-fs-submit-btn id="book-btn" data-fs-submit-btn>Book at $—/mo →</button>
+              <p class="book-note">No payment due now — we'll confirm by text before your first visit.</p>
+            </form>
+          </div>
+        </div>
+
+        <div class="quote-nav">
+          <button type="button" class="quote-back" id="quote-back">← Back</button>
+          <button type="button" class="btn btn-honey quote-next" id="quote-next">Next →</button>
+        </div>
+      </div>
+
+      <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', {
+          formElement: '#quote-form',
+          formId: 'maewkqvb',
+          onSuccess: function () {
+            document.querySelector('.quote-card').style.display = 'none';
+            document.querySelector('[data-fs-success]').textContent = "Thanks — we've got your request and will text or email you a confirmation, usually same day.";
+          }
+        });
+      </script>
+      <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+      <script>
+        (function(){
+          var state = { dogs:null, frequency:null, yard:null, extras:[] };
+          var steps = [1,2,3,4,5];
+          var current = 1;
+
+          var basePrices = {
+            weekly:{label:"Weekly", base:80, mo:4},
+            twice:{label:"Twice a Week", base:120, mo:8},
+            eow:{label:"Every Other Week", base:55, mo:2},
+            onetime:{label:"One-Time", base:119, mo:1}
+          };
+          var perDog = { weekly:20, twice:40, eow:10, onetime:8 };
+          var yardFee = { weekly:10, twice:15, eow:8, onetime:15 };
+          var extraPrices = {
+            deodorize:{label:"Yard deodorizing", amt:15},
+            patio:{label:"Patio & deck hosing", amt:12},
+            winter:{label:"Winter service", amt:15},
+            kennel:{label:"Kennel / run cleanup", amt:8},
+            bags:{label:"Compostable bags", amt:6}
+          };
+
+          function fmt(n){ return "$" + n; }
+
+          function updateDots(){
+            document.querySelectorAll('.p-dot').forEach(function(d){
+              d.classList.toggle('done', parseInt(d.dataset.dot) <= current);
+            });
+          }
+
+          function showStep(n){
+            document.querySelectorAll('.quote-step').forEach(function(s){
+              s.classList.toggle('active', parseInt(s.dataset.step) === n);
+            });
+            document.getElementById('quote-back').disabled = (n === 1);
+            var nextBtn = document.getElementById('quote-next');
+            if(n === 5){ nextBtn.style.display = 'none'; }
+            else { nextBtn.style.display = 'inline-flex'; validateNext(n); }
+            updateDots();
+            if(n === 5){ computeQuote(); }
+          }
+
+          function validateNext(n){
+            var nextBtn = document.getElementById('quote-next');
+            var ok = false;
+            if(n===1) ok = !!state.dogs;
+            if(n===2) ok = !!state.frequency;
+            if(n===3) ok = !!state.yard;
+            if(n===4) ok = true; // extras optional
+            nextBtn.classList.toggle('enabled', ok);
+          }
+
+          document.querySelectorAll('.quote-options').forEach(function(group){
+            var key = group.dataset.group;
+            var multi = group.dataset.multi === "true";
+            group.querySelectorAll('.quote-opt').forEach(function(btn){
+              btn.addEventListener('click', function(){
+                var val = btn.dataset.value;
+                if(multi){
+                  var idx = state.extras.indexOf(val);
+                  if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); }
+                  else { state.extras.push(val); btn.classList.add('selected'); }
+                } else {
+                  group.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
+                  btn.classList.add('selected');
+                  state[key] = val;
+                  validateNext(current);
+                  setTimeout(function(){ if(current < 4){ goNext(); } }, 220);
+                }
+              });
+            });
+          });
+
+          function goNext(){
+            if(current < 5){ current++; showStep(current); }
+          }
+          function goBack(){
+            if(current > 1){ current--; showStep(current); }
+          }
+          document.getElementById('quote-next').addEventListener('click', goNext);
+          document.getElementById('quote-back').addEventListener('click', goBack);
+
+          function computeQuote(){
+            var freq = state.frequency || 'weekly';
+            var dogs = parseInt(state.dogs || '1');
+            var plan = basePrices[freq];
+            var lines = [];
+            var total = 0;
+
+            var base = plan.base;
+            lines.push({ label: plan.label + " service (1 dog)", amt: base });
+            total += base;
+
+            if(dogs > 1){
+              var extra = (dogs - 1) * perDog[freq];
+              lines.push({ label: (dogs-1) + " additional dog" + (dogs-1>1?"s":""), amt: extra });
+              total += extra;
+            }
+
+            if(state.yard === 'large'){
+              var yf = yardFee[freq];
+              lines.push({ label: "Large / wooded yard", amt: yf });
+              total += yf;
+            }
+
+            state.extras.forEach(function(e){
+              var ex = extraPrices[e];
+              lines.push({ label: ex.label, amt: ex.amt });
+              total += ex.amt;
+            });
+
+            var unit = (freq === 'onetime') ? '' : '/mo';
+            var html = '';
+            lines.forEach(function(l){
+              html += '<div class="line"><span>' + l.label + '</span><span>' + fmt(l.amt) + unit + '</span></div>';
+            });
+            html += '<div class="total"><span>Your price</span><span>' + fmt(total) + unit + '</span></div>';
+            document.getElementById('quote-breakdown').innerHTML = html;
+
+            var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "") + "total " + fmt(total) + unit;
+            document.getElementById('q-summary').value = summary;
+            document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
+          }
+
+          showStep(1);
+        })();
+      </script>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Pine & Paw Yard Cleaning</h4>
+        <p>Dog waste removal & yard sanitation for St. Paul and the surrounding Twin Cities metro. Year-round, no contracts.</p>
+      </div>
+      <div>
+        <h4>Service area</h4>
+        <div class="area-list">
+          <span>North End</span><span>Como</span><span>Frogtown</span><span>Payne-Phalen</span><span>Summit-University</span><span>Hamline-Midway</span><span>Merriam Park</span><span>Downtown St. Paul</span><span>Dayton's Bluff</span><span>Highland Park</span><span>Mac-Groveland</span><span>Summit Hill</span><span>Roseville</span><span>Maplewood</span><span>Little Canada</span><span>Falcon Heights</span><span>Lauderdale</span><span>Arden Hills</span><span>Shoreview</span><span>Vadnais Heights</span><span>North St. Paul</span><span>Mendota Heights</span><span>NE Minneapolis</span><span>Downtown Minneapolis</span>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+16515550123">(651) 555-0123</a></li>
+          <li><a href="mailto:hello@pineandpawyardcleaning.com">hello@pineandpawyardcleaning.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pine & Paw Yard Cleaning. St. Paul, MN.</span>
+      <span>Placeholder contact info — replace before launch.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
