@@ -203,9 +203,27 @@
   footer a{text-decoration:none;}
   footer a:hover{color:var(--paper);}
   .footer-bottom{border-top:1px solid rgba(255,255,255,0.12);padding-top:20px;font-size:12px;color:#7c8875;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;}
+  /* ---------- LOADING OVERLAY ---------- */
+  #page-loader{position:fixed;inset:0;background:var(--pine-deep);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .45s ease, visibility .45s ease;}
+  #page-loader img{width:64px;height:auto;animation:loaderPulse 1.4s ease-in-out infinite;}
+  @keyframes loaderPulse{0%,100%{opacity:.5;transform:scale(0.9);}50%{opacity:1;transform:scale(1);}}
+  #page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+  @media(prefers-reduced-motion:reduce){#page-loader img{animation:none;}}
 </style>
 </head>
 <body>
+
+<div id="page-loader" aria-hidden="true">
+  <img src="pine-and-paw-logo.svg" alt="">
+</div>
+<script>
+  function hidePageLoader(){
+    var el = document.getElementById('page-loader');
+    if(el) el.classList.add('hidden');
+  }
+  window.addEventListener('load', hidePageLoader);
+  setTimeout(hidePageLoader, 4000); // safety fallback in case 'load' is delayed
+</script>
 
 <header>
   <nav class="nav wrap">
@@ -264,7 +282,7 @@
 
   <section class="photo-section photo-hero">
     <div class="photo-inner">
-      <img src="pine-paw-hero.png" alt="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch">
+      <img src="pine-paw-hero.jpg" alt="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch" fetchpriority="high">
     </div>
   </section>
 
@@ -373,7 +391,7 @@
 
   <section class="photo-section photo-mid">
     <div class="photo-inner">
-      <img src="pine-paw-crew.png" alt="A Pine & Paw Yard Cleaning crew member entering a client's backyard through the gate">
+      <img src="pine-paw-crew.jpg" alt="A Pine & Paw Yard Cleaning crew member entering a client's backyard through the gate" loading="lazy">
     </div>
   </section>
 
@@ -678,7 +696,7 @@
 
   <section class="photo-section photo-end">
     <div class="photo-inner">
-      <img src="pine-paw-dog.png" alt="A calm golden retriever sitting in a tidy St. Paul backyard">
+      <img src="pine-paw-dog.jpg" alt="A calm golden retriever sitting in a tidy St. Paul backyard" loading="lazy">
     </div>
   </section>
 
