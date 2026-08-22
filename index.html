@@ -128,6 +128,21 @@
   .step p{font-size:14.5px;color:#4a4436;}
   .steps-cta{text-align:center;}
 
+  .trust-list{list-style:none;max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+  .trust-list li{font-family:'Inter';font-size:15.5px;font-weight:600;color:var(--pine-deep);padding-left:30px;position:relative;text-align:left;}
+  .trust-list li::before{content:"✓";position:absolute;left:0;top:1px;color:var(--honey-deep);font-weight:700;font-size:16px;}
+
+  /* ---------- FAQ (light accordion, distinct from dark Pricing/Add-ons) ---------- */
+  details.faq-item{border:1px solid var(--line);border-radius:16px;background:var(--white);overflow:hidden;}
+  details.faq-item + details.faq-item{margin-top:12px;}
+  details.faq-item summary{cursor:pointer;list-style:none;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  .faq-question{font-family:'Inter';font-weight:600;font-size:15.5px;color:var(--pine-deep);}
+  .faq-icon{flex-shrink:0;width:26px;height:26px;border-radius:999px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Inter';font-weight:400;font-size:17px;color:var(--honey-deep);transition:transform .25s ease;}
+  details.faq-item[open] .faq-icon{transform:rotate(45deg);}
+  .faq-answer{padding:0 24px 22px;}
+  .faq-answer p{font-size:14px;color:#4a4436;}
+
   /* ---------- PRICING TABLE ---------- */
   .price-table-wrap{overflow-x:auto;border-radius:16px;border:1px solid rgba(255,255,255,0.14);background:transparent;}
   .price-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px;}
@@ -345,6 +360,18 @@
       <div class="steps-cta">
         <a href="#quote" class="btn btn-honey btn-sm btn-quote">Get a Quote</a>
       </div>
+    </div>
+  </section>
+
+  <!-- TRUST / PROCESS STRIP -->
+  <section class="trust-section">
+    <div class="wrap">
+      <ul class="trust-list">
+        <li>Tools sanitized with kennel-grade disinfectant between every yard.</li>
+        <li>Photo confirmation of your locked gate texted when we're done.</li>
+        <li>Uniformed staff for every visit.</li>
+        <li>All waste hauled completely off your property — your bins stay odor-free.</li>
+      </ul>
     </div>
   </section>
 
@@ -724,6 +751,56 @@
           showStep(1);
         })();
       </script>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Good to know.</h2>
+      </div>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What happens if it snows on my scheduled day?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>We provide year-round service, including through Minnesota winters. If fresh snowfall makes part of your yard inaccessible, some areas may be missed during that visit — in that case, we'll offer a refund or credit for the missed area.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">How does billing work?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>You're billed monthly, in advance — we send an invoice for the upcoming month before your next round of visits begins.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What if I'm not happy with a visit?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Your satisfaction is guaranteed. If a visit doesn't meet expectations, let us know and we'll make it right with a refund or credit.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Do I need to be home, or do anything after my first visit?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No — once your schedule is set up, service runs automatically. It's a reliable, contact-free routine: we show up on your chosen schedule, and you'll get a text with photo confirmation after every visit.</p>
+        </div>
+      </details>
     </div>
   </section>
 
