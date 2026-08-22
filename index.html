@@ -68,6 +68,18 @@
   .trust-strip{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-family:'IBM Plex Mono';color:var(--pine);}
   .trust-strip span{background:var(--white);border:1px solid var(--line);padding:6px 12px;border-radius:999px;}
 
+  .hero-logo-lockup{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:44px;padding-top:36px;border-top:1px solid var(--line);text-align:center;}
+  .hero-logo-mark{height:96px;width:auto;flex-shrink:0;}
+  .hero-logo-text-group{display:flex;flex-direction:column;align-items:center;line-height:1.05;}
+  .hero-logo-title{font-family:'Fraunces';font-weight:600;font-size:38px;color:var(--pine-deep);}
+  .hero-logo-sub{font-family:'Inter';font-weight:400;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-top:6px;}
+  @media(max-width:640px){
+    .hero-logo-lockup{gap:16px;}
+    .hero-logo-mark{height:68px;}
+    .hero-logo-title{font-size:28px;}
+    .hero-logo-sub{font-size:12px;}
+  }
+
   /* ---------- PHOTOS (full-bleed, letterboxed on wide screens) ---------- */
   .photo-section{width:100%;background:var(--pine-deep);padding:0;}
   .photo-inner{max-width:1600px;margin:0 auto;overflow:hidden;}
@@ -270,19 +282,27 @@
 
 <main id="top">
 
-  <!-- HERO — no CTA button here per latest direction -->
+  <!-- HERO PHOTO — now leads the page -->
+  <section class="photo-section photo-hero">
+    <div class="photo-inner">
+      <img src="pine-paw-hero.jpg" alt="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch" fetchpriority="high">
+    </div>
+  </section>
+
+  <!-- HERO TEXT + LARGE LOGO LOCKUP -->
   <section class="hero">
     <div class="wrap hero-inner">
       <span class="eyebrow">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Your yard, minus the mess.</h1>
       <p class="lead">Dog waste removal & yard sanitation for St. Paul homes. Locally owned, no contracts, working through every Minnesota season — including the snowy ones.</p>
 
-    </div>
-  </section>
-
-  <section class="photo-section photo-hero">
-    <div class="photo-inner">
-      <img src="pine-paw-hero.jpg" alt="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch" fetchpriority="high">
+      <div class="hero-logo-lockup">
+        <img class="hero-logo-mark" src="pine-and-paw-logo.svg" alt="">
+        <span class="hero-logo-text-group">
+          <span class="hero-logo-title">Pine &amp; Paw</span>
+          <span class="hero-logo-sub">Yard Cleaning</span>
+        </span>
+      </div>
     </div>
   </section>
 
