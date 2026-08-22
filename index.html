@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pine & Paw Yard Cleaning | Dog Waste Removal & Yard Sanitation — St. Paul, MN & Twin Cities</title>
 <meta name="description" content="Dog Waste Removal & Yard Sanitation — St. Paul, MN & Twin Cities. Locally owned, no contracts, year-round service.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQZ5W50QSX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZQZ5W50QSX');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -117,6 +126,22 @@
   .price-note{margin-top:20px;background:var(--white);border:1px dashed var(--line);border-radius:12px;padding:14px 20px;font-size:13px;color:#4a4436;}
   .pricing-cta{margin-top:24px;}
 
+  @media(max-width:640px){
+    .price-table-wrap{overflow-x:visible;border:none;background:transparent;}
+    .price-table{min-width:0;width:100%;border-collapse:separate;border-spacing:0;}
+    .price-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+    .price-table tbody{display:block;}
+    .price-table tr{display:block;background:var(--white);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;}
+    .price-table tr.featured{border-color:var(--honey);border-width:2px;}
+    .price-table tr:last-child{margin-bottom:0;}
+    .price-table td{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line);text-align:right;}
+    .price-table td:last-child{border-bottom:none;}
+    .price-table td::before{content:attr(data-label);font-family:'IBM Plex Mono';font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--sage);text-align:left;}
+    .price-table td.plan-name{padding:14px 16px;font-family:'Fraunces';font-weight:600;font-size:17px;color:var(--pine-deep);justify-content:flex-start;background:var(--paper);}
+    .price-table td.plan-name::before{content:none;}
+    .price-table td.plan-name .tag{margin-left:8px;}
+  }
+
   /* ---------- ADD-ONS ---------- */
   .addons{display:grid;gap:14px;}
   @media(min-width:700px){.addons{grid-template-columns:repeat(3,1fr);}}
@@ -210,6 +235,19 @@
     });
   });
   if(window.location.hash){ openAccordionFor(window.location.hash); }
+
+  // GA4: accordion engagement
+  var pricingAcc = document.getElementById('pricing-accordion');
+  var addonsAcc = document.getElementById('addons');
+  if(pricingAcc){ pricingAcc.addEventListener('toggle', function(){ if(pricingAcc.open && typeof gtag === 'function'){ gtag('event','pricing_opened'); } }); }
+  if(addonsAcc){ addonsAcc.addEventListener('toggle', function(){ if(addonsAcc.open && typeof gtag === 'function'){ gtag('event','addons_opened'); } }); }
+
+  // GA4: phone number clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
+    link.addEventListener('click', function(){
+      if(typeof gtag === 'function'){ gtag('event','contact_phone_click'); }
+    });
+  });
 </script>
 
 <main id="top">
@@ -265,7 +303,7 @@
   <!-- PRICING & ADD-ONS (accordion) -->
   <section id="pricing">
     <div class="wrap">
-      <details class="accordion">
+      <details class="accordion" id="pricing-accordion">
         <summary>
           <span class="accordion-heading">
             <span class="eyebrow">Pricing</span>
@@ -282,27 +320,27 @@
           <tbody>
             <tr>
               <td class="plan-name">Every Other Week</td>
-              <td class="amt-sub">2</td>
-              <td class="amt">$45–50/mo</td>
-              <td class="amt-sub">+$10/mo</td>
+              <td class="amt-sub" data-label="Visits/mo">2</td>
+              <td class="amt" data-label="1 Dog">$45–50/mo</td>
+              <td class="amt-sub" data-label="Each additional dog">+$10/mo</td>
             </tr>
             <tr class="featured">
               <td class="plan-name">Weekly<span class="tag">Most popular</span></td>
-              <td class="amt-sub">4</td>
-              <td class="amt">$60–70/mo</td>
-              <td class="amt-sub">+$20/mo</td>
+              <td class="amt-sub" data-label="Visits/mo">4</td>
+              <td class="amt" data-label="1 Dog">$60–70/mo</td>
+              <td class="amt-sub" data-label="Each additional dog">+$20/mo</td>
             </tr>
             <tr>
               <td class="plan-name">Twice a Week</td>
-              <td class="amt-sub">8</td>
-              <td class="amt">$95–110/mo</td>
-              <td class="amt-sub">+$40/mo</td>
+              <td class="amt-sub" data-label="Visits/mo">8</td>
+              <td class="amt" data-label="1 Dog">$95–110/mo</td>
+              <td class="amt-sub" data-label="Each additional dog">+$40/mo</td>
             </tr>
             <tr>
               <td class="plan-name">One-Time</td>
-              <td class="amt-sub">1 visit</td>
-              <td class="amt">$79–129</td>
-              <td class="amt-sub">+$8</td>
+              <td class="amt-sub" data-label="Visits/mo">1 visit</td>
+              <td class="amt" data-label="1 Dog">$79–129</td>
+              <td class="amt-sub" data-label="Each additional dog">+$8</td>
             </tr>
           </tbody>
         </table>
@@ -460,6 +498,9 @@
                 document.getElementById('quote-progress').style.display = 'none';
                 document.querySelectorAll('.quote-step').forEach(function(s){ s.style.display = 'none'; });
                 document.getElementById('quote-nav').style.display = 'none';
+                if(typeof gtag === 'function'){
+                  gtag('event', 'quote_booked', { value: window.lastQuoteTotal || 0, currency: 'USD' });
+                }
                 successEl.innerHTML =
                   '<h3 class="success-title">Thank You! \ud83d\udc3e</h3>' +
                   '<p class="success-body">We\'ve got your quote and details — expect a text or call within 24 hours to confirm your first visit date.</p>' +
@@ -515,6 +556,8 @@
             });
           }
 
+          var started = false;
+
           function showStep(n){
             document.querySelectorAll('.quote-step').forEach(function(s){
               s.classList.toggle('active', parseInt(s.dataset.step) === n);
@@ -524,6 +567,10 @@
             if(n === 5){ nextBtn.style.display = 'none'; }
             else { nextBtn.style.display = 'inline-flex'; validateNext(n); }
             updateDots();
+            if(typeof gtag === 'function'){
+              gtag('event', 'quote_step_viewed', { step: n });
+              if(n === 5){ gtag('event', 'quote_price_viewed'); }
+            }
             if(n === 5){ computeQuote(); }
           }
 
@@ -543,6 +590,10 @@
             group.querySelectorAll('.quote-opt').forEach(function(btn){
               btn.addEventListener('click', function(){
                 var val = btn.dataset.value;
+                if(!started){
+                  started = true;
+                  if(typeof gtag === 'function'){ gtag('event', 'quote_started'); }
+                }
                 if(multi){
                   if(val === 'none'){
                     state.extras = [];
@@ -616,6 +667,7 @@
             var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "none, ") + "total " + fmt(total) + unit;
             document.getElementById('q-summary').value = summary;
             document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
+            window.lastQuoteTotal = total;
           }
 
           showStep(1);
