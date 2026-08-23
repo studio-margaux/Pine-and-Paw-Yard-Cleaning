@@ -121,19 +121,13 @@
   .trust-strip{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;font-family:'IBM Plex Mono';color:var(--pine);}
   .trust-strip span{background:var(--white);border:1px solid var(--line);padding:6px 12px;border-radius:999px;}
 
-  .logo-block{width:100%;background:var(--pine-deep);padding:72px 0;}
-  .hero-logo-lockup{display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center;}
-  .hero-logo-mark{height:192px;width:192px;flex-shrink:0;background-color:var(--paper);-webkit-mask-image:url('pine-and-paw-logo.svg');mask-image:url('pine-and-paw-logo.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;}
-  .hero-logo-text-group{display:flex;flex-direction:column;align-items:center;line-height:1.05;}
-  .hero-logo-title{font-family:'Fraunces';font-weight:600;font-size:76px;color:var(--paper);}
-  .hero-logo-sub{font-family:'Inter';font-weight:400;font-size:28px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-top:6px;}
-  @media(max-width:640px){
-    .logo-block{padding:48px 0;}
-    .hero-logo-lockup{gap:16px;}
-    .hero-logo-mark{height:136px;width:136px;}
-    .hero-logo-title{font-size:56px;}
-    .hero-logo-sub{font-size:24px;}
-  }
+  .area-marquee{width:100%;background:var(--pine-deep);padding:20px 0;overflow:hidden;white-space:nowrap;}
+  .marquee-track{display:inline-flex;align-items:center;gap:18px;animation:marqueeScroll 32s linear infinite;}
+  .marquee-track span{font-family:'IBM Plex Mono';font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:var(--paper);white-space:nowrap;}
+  .marquee-track .dot{color:var(--honey);font-size:12px;}
+  @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
+  @media(max-width:640px){.marquee-track span{font-size:12px;}}
 
   /* ---------- PHOTOS (full-bleed, letterboxed on wide screens) ---------- */
   .photo-section{width:100%;background:var(--pine-deep);padding:0;}
@@ -367,7 +361,7 @@
 
   <!-- HERO TEXT -->
   <section class="hero">
-    <div class="wm" aria-hidden="true" style="--rot:-6deg;width:280px;height:280px;top:-40px;right:-90px;"></div>
+    <div class="wm" aria-hidden="true" style="--rot:-6deg;width:260px;height:260px;top:20px;right:-90px;"></div>
     <div class="wrap hero-inner">
       <span class="hero-tagline">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Your yard, minus the mess.</h1>
@@ -376,13 +370,24 @@
   </section>
 
   <!-- LARGE LOGO LOCKUP — color block -->
-  <section class="logo-block">
-    <div class="wrap hero-logo-lockup">
-      <div class="hero-logo-mark" role="img" aria-label="Pine & Paw logo mark"></div>
-      <span class="hero-logo-text-group">
-        <span class="hero-logo-title">Pine &amp; Paw</span>
-        <span class="hero-logo-sub">Yard Cleaning</span>
-      </span>
+  <section class="area-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>North End</span><span class="dot">·</span>
+      <span>Como</span><span class="dot">·</span>
+      <span>Highland Park</span><span class="dot">·</span>
+      <span>Mac-Groveland</span><span class="dot">·</span>
+      <span>Summit Hill</span><span class="dot">·</span>
+      <span>Frogtown</span><span class="dot">·</span>
+      <span>Payne-Phalen</span><span class="dot">·</span>
+      <span>Summit-University</span><span class="dot">·</span>
+      <span>North End</span><span class="dot">·</span>
+      <span>Como</span><span class="dot">·</span>
+      <span>Highland Park</span><span class="dot">·</span>
+      <span>Mac-Groveland</span><span class="dot">·</span>
+      <span>Summit Hill</span><span class="dot">·</span>
+      <span>Frogtown</span><span class="dot">·</span>
+      <span>Payne-Phalen</span><span class="dot">·</span>
+      <span>Summit-University</span><span class="dot">·</span>
     </div>
   </section>
 
@@ -419,7 +424,7 @@
 
   <!-- TRUST / PROCESS STRIP -->
   <section class="trust-section wm-host">
-    <div class="wm" aria-hidden="true" style="--rot:-4deg;width:180px;height:180px;bottom:-50px;right:-60px;"></div>
+    <div class="wm" aria-hidden="true" style="--rot:-4deg;width:160px;height:160px;top:30px;right:-55px;"></div>
     <div class="wrap">
       <ul class="trust-list">
         <li>Tools sanitized with kennel-grade disinfectant between every yard.</li>
@@ -813,7 +818,7 @@
 
   <!-- FAQ -->
   <section id="faq" class="wm-host">
-    <div class="wm" aria-hidden="true" style="--rot:4deg;width:200px;height:200px;bottom:0px;left:-70px;"></div>
+    <div class="wm" aria-hidden="true" style="--rot:4deg;width:190px;height:190px;top:60px;left:-70px;"></div>
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">FAQ</span>
