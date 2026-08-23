@@ -80,7 +80,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background-color:var(--paper);background-image:url('pine-paw-watermark.svg');background-repeat:repeat;background-size:800px 800px;color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  body{background-color:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   h1,h2,h3,.display{font-family:'Fraunces',serif;font-weight:600;color:var(--pine-deep);line-height:1.1;letter-spacing:-0.01em;}
   .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
   a{color:inherit;}
@@ -110,8 +110,10 @@
   .btn-sm{padding:9px 18px;font-size:13.5px;}
 
   /* ---------- HERO (no CTA button — text only) ---------- */
-  .hero{padding:72px 0 52px;}
-  .hero-inner{max-width:680px;}
+  .hero{padding:72px 0 52px;position:relative;overflow:hidden;}
+  .hero-watermark{position:absolute;top:-60px;right:-180px;width:620px;height:620px;background-color:#E6DCC3;-webkit-mask-image:url('pine-and-paw-logo.svg');mask-image:url('pine-and-paw-logo.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transform:rotate(-10deg);z-index:0;pointer-events:none;}
+  @media(max-width:640px){.hero-watermark{width:420px;height:420px;top:-30px;right:-140px;}}
+  .hero-inner{max-width:680px;position:relative;z-index:1;}
   .eyebrow{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--sage);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;display:block;}
   .hero-tagline{display:block;font-family:'Fraunces';font-style:italic;font-weight:500;font-size:16px;color:var(--sage);margin-bottom:16px;}
   .hero h1{font-size:clamp(38px,6vw,60px);margin-bottom:20px;}
@@ -365,6 +367,7 @@
 
   <!-- HERO TEXT -->
   <section class="hero">
+    <div class="hero-watermark" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <span class="hero-tagline">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Your yard, minus the mess.</h1>
