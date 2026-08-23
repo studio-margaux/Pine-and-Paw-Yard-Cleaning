@@ -85,7 +85,7 @@
   .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
   a{color:inherit;}
   img,svg{display:block;max-width:100%;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
   :focus-visible{outline:3px solid var(--honey);outline-offset:3px;}
 
   /* ---------- HEADER / LOGO LOCKUP ---------- */
@@ -111,8 +111,8 @@
 
   /* ---------- HERO (no CTA button — text only) ---------- */
   .hero{padding:72px 0 52px;position:relative;overflow:hidden;}
-  .hero-watermark{position:absolute;top:-60px;right:-180px;width:620px;height:620px;background-color:#E6DCC3;-webkit-mask-image:url('pine-and-paw-logo.svg');mask-image:url('pine-and-paw-logo.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transform:rotate(-10deg);z-index:0;pointer-events:none;}
-  @media(max-width:640px){.hero-watermark{width:420px;height:420px;top:-30px;right:-140px;}}
+  .wm{position:absolute;background-color:#E6DCC3;-webkit-mask-image:url('pine-and-paw-logo.svg');mask-image:url('pine-and-paw-logo.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transform:rotate(var(--rot,0deg));z-index:0;pointer-events:none;}
+  .wm-host{position:relative;overflow:hidden;}
   .hero-inner{max-width:680px;position:relative;z-index:1;}
   .eyebrow{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--sage);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;display:block;}
   .hero-tagline{display:block;font-family:'Fraunces';font-style:italic;font-weight:500;font-size:16px;color:var(--sage);margin-bottom:16px;}
@@ -367,7 +367,7 @@
 
   <!-- HERO TEXT -->
   <section class="hero">
-    <div class="hero-watermark" aria-hidden="true"></div>
+    <div class="wm" aria-hidden="true" style="--rot:-6deg;width:280px;height:280px;top:-40px;right:-90px;"></div>
     <div class="wrap hero-inner">
       <span class="hero-tagline">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Your yard, minus the mess.</h1>
@@ -387,7 +387,8 @@
   </section>
 
   <!-- HOW IT WORKS -->
-  <section>
+  <section class="wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:5deg;width:220px;height:220px;top:20px;left:-80px;"></div>
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">How it works</span>
@@ -417,7 +418,8 @@
   </section>
 
   <!-- TRUST / PROCESS STRIP -->
-  <section class="trust-section">
+  <section class="trust-section wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:-4deg;width:180px;height:180px;bottom:-50px;right:-60px;"></div>
     <div class="wrap">
       <ul class="trust-list">
         <li>Tools sanitized with kennel-grade disinfectant between every yard.</li>
@@ -429,7 +431,8 @@
   </section>
 
   <!-- PRICING & ADD-ONS (accordion) -->
-  <section id="pricing">
+  <section id="pricing" class="wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:7deg;width:240px;height:240px;top:60px;left:-90px;"></div>
     <div class="wrap">
       <details class="accordion" id="pricing-accordion">
         <summary>
@@ -511,7 +514,8 @@
   <div class="wrap"><hr class="rule"></div>
 
   <!-- QUOTE QUESTIONNAIRE -->
-  <section id="quote">
+  <section id="quote" class="wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:-5deg;width:260px;height:260px;top:100px;right:-100px;"></div>
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Get a quote</span>
@@ -808,7 +812,8 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:4deg;width:200px;height:200px;bottom:0px;left:-70px;"></div>
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">FAQ</span>
