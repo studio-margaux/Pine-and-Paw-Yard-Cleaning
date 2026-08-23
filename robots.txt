@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://studio-margaux.github.io/Pine-and-Paw-Yard-Cleaning/sitemap.xml
+Sitemap: https://pineandpawyards.com/sitemap.xml
