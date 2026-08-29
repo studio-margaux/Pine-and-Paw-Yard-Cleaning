@@ -33,7 +33,7 @@
   "url": "https://pineandpawyards.com/",
   "telephone": "+16124249688",
   "description": "Dog waste removal and yard sanitation service serving St. Paul, MN and the Twin Cities metro. Locally owned, no contracts, year-round service.",
-  "priceRange": "$45-$130",
+  "priceRange": "$40-$169",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "St. Paul",
@@ -54,10 +54,11 @@
     { "@type": "City", "name": "Minneapolis, MN" }
   ],
   "makesOffer": [
-    { "@type": "Offer", "name": "Every Other Week dog waste removal", "priceRange": "$45-$50" },
-    { "@type": "Offer", "name": "Weekly dog waste removal", "priceRange": "$60-$70" },
-    { "@type": "Offer", "name": "Twice a Week dog waste removal", "priceRange": "$95-$110" },
-    { "@type": "Offer", "name": "One-Time dog waste cleanup", "priceRange": "$79-$129" }
+    { "@type": "Offer", "name": "Every Other Week dog waste removal", "price": "40", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Weekly dog waste removal", "price": "68", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Twice a Week dog waste removal", "price": "120", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "One-Time dog waste cleanup", "price": "95", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Spring Cleaning deep cleanup", "price": "169", "priceCurrency": "USD" }
   ]
 }
 </script>
@@ -155,16 +156,13 @@
     .photo-hero .photo-inner,.photo-mid .photo-inner,.photo-end .photo-inner{aspect-ratio:4/3;}
   }
 
-  /* ---------- ACCORDIONS ---------- */
-  details.accordion{border:1px solid rgba(255,255,255,0.14);border-radius:18px;background:var(--pine-deep);overflow:hidden;}
-  details.accordion + details.accordion{margin-top:16px;}
-  details.accordion summary{cursor:pointer;list-style:none;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-  details.accordion summary::-webkit-details-marker{display:none;}
-  details.accordion .eyebrow{color:#a7b09f;}
+  /* ---------- PRICING / ADD-ONS CONTAINER ---------- */
+  .accordion-static{border:1px solid rgba(255,255,255,0.14);border-radius:18px;background:var(--pine-deep);overflow:hidden;}
+  .accordion-static + .accordion-static{margin-top:16px;}
+  .accordion-static-head{padding:22px 26px 6px;}
+  .accordion-static-head .eyebrow{color:#a7b09f;}
   .accordion-heading{display:flex;flex-direction:column;gap:6px;}
   .accordion-title{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--paper);}
-  .accordion-icon{flex-shrink:0;width:28px;height:28px;border-radius:999px;border:1.5px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-family:'Inter';font-weight:400;font-size:18px;color:var(--honey);transition:transform .25s ease;}
-  details.accordion[open] .accordion-icon{transform:rotate(45deg);}
   .accordion-body{padding:0 26px 26px;}
 
   /* ---------- MOBILE FULL-WIDTH QUOTE CTAS ---------- */
@@ -180,18 +178,23 @@
   .section-head p{color:#4a4436;font-size:16px;margin-top:12px;}
   hr.rule{border:none;border-top:1px solid var(--line);margin:0 0 60px;}
 
-  /* ---------- HOW IT WORKS ---------- */
-  .steps{display:grid;gap:24px;margin-bottom:32px;}
-  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);}}
-  .step{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px 24px;}
-  .step .num{font-family:'IBM Plex Mono';color:var(--sage);font-size:13px;display:block;margin-bottom:10px;}
-  .step h3{font-size:20px;font-weight:600;margin-bottom:8px;color:var(--pine-deep);}
-  .step p{font-size:14.5px;color:#4a4436;}
-  .steps-cta{text-align:center;}
-
-  .trust-list{list-style:none;max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
-  .trust-list li{font-family:'Inter';font-size:15.5px;font-weight:600;color:var(--pine-deep);padding-left:30px;position:relative;text-align:left;}
-  .trust-list li::before{content:"✓";position:absolute;left:0;top:1px;color:var(--honey-deep);font-weight:700;font-size:16px;}
+  .trust-grid{display:grid;gap:16px;max-width:960px;margin:0 auto;}
+  @media(min-width:560px){.trust-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:940px){.trust-grid{grid-template-columns:repeat(4,1fr);}}
+  .trust-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-align:left;}
+  .trust-icon{width:44px;height:44px;border-radius:999px;background:rgba(201,154,92,0.16);display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0;}
+  .trust-icon svg{width:22px;height:22px;fill:none;stroke:var(--honey-deep);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .trust-card h4{font-family:'Inter';font-weight:600;font-size:15.5px;color:var(--pine-deep);margin-bottom:6px;}
+  .trust-card p{font-family:'Inter';font-size:13.5px;color:#4a4436;line-height:1.5;}
+  @media(max-width:639px){
+    .trust-grid{gap:10px;}
+    .trust-card{display:flex;align-items:center;gap:14px;padding:14px 16px;}
+    .trust-text{order:2;flex:1;text-align:left;}
+    .trust-icon{order:1;margin-bottom:0;width:38px;height:38px;flex-shrink:0;}
+    .trust-icon svg{width:18px;height:18px;}
+    .trust-card h4{margin-bottom:2px;font-size:14.5px;}
+    .trust-card p{font-size:12.5px;line-height:1.4;}
+  }
 
   /* ---------- FAQ (light accordion, distinct from dark Pricing/Add-ons) ---------- */
   details.faq-item{border:1px solid var(--line);border-radius:16px;background:var(--white);overflow:hidden;}
@@ -244,6 +247,7 @@
   .addon{border:1px solid rgba(255,255,255,0.16);background:var(--pine);border-radius:14px;padding:20px 22px;}
   .addon h4{font-size:15.5px;font-weight:600;color:var(--paper);margin-bottom:6px;font-family:'Inter';}
   .addon p{font-size:13.5px;color:#cfd6c9;}
+  .addon-price{font-family:'IBM Plex Mono';font-size:13.5px;font-weight:600;color:var(--honey);margin-top:8px;}
 
   /* ---------- QUOTE QUESTIONNAIRE ---------- */
   .quote-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:36px;max-width:680px;box-shadow:0 24px 48px -30px rgba(31,59,47,0.28);}
@@ -273,6 +277,7 @@
   .quote-breakdown .total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px solid var(--line);font-weight:600;color:var(--pine-deep);font-size:16px;}
   .quote-contact .field{margin-bottom:16px;}
   .quote-contact label{display:block;font-size:13px;font-weight:600;color:var(--pine-deep);margin-bottom:6px;}
+  .lot-size-hint{font-size:12.5px;color:#7d735d;margin:-2px 0 8px;line-height:1.5;}
   .quote-contact input,.quote-contact textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:'Inter';font-size:15px;background:var(--paper);color:var(--ink);}
   .quote-contact input:focus,.quote-contact textarea:focus{outline:3px solid var(--honey);outline-offset:0;border-color:var(--honey);}
   .quote-contact textarea{resize:vertical;}
@@ -352,12 +357,6 @@
   });
   if(window.location.hash){ openAccordionFor(window.location.hash); }
 
-  // GA4: accordion engagement
-  var pricingAcc = document.getElementById('pricing-accordion');
-  var addonsAcc = document.getElementById('addons');
-  if(pricingAcc){ pricingAcc.addEventListener('toggle', function(){ if(pricingAcc.open && typeof gtag === 'function'){ gtag('event','pricing_opened'); } }); }
-  if(addonsAcc){ addonsAcc.addEventListener('toggle', function(){ if(addonsAcc.open && typeof gtag === 'function'){ gtag('event','addons_opened'); } }); }
-
   // GA4: phone number clicks
   document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
     link.addEventListener('click', function(){
@@ -383,61 +382,8 @@
       <h1>Clean yards for happy paws.</h1>
       <p class="lead">Dog waste removal & yard sanitation for St. Paul homes. Locally owned, no contracts, working through every Minnesota season — including the snowy ones.</p>
       <div class="hero-price-block">
-        <p class="hero-price-note">Plans start at $45/mo.</p>
+        <p class="hero-price-note">Plans start at $40/mo.</p>
         <a href="#quote" class="btn btn-honey hero-price-cta">Get my price</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- LARGE LOGO LOCKUP — color block -->
-  <section class="area-marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>North End</span><span class="dot">·</span>
-      <span>Como</span><span class="dot">·</span>
-      <span>Highland Park</span><span class="dot">·</span>
-      <span>Mac-Groveland</span><span class="dot">·</span>
-      <span>Summit Hill</span><span class="dot">·</span>
-      <span>Frogtown</span><span class="dot">·</span>
-      <span>Payne-Phalen</span><span class="dot">·</span>
-      <span>Summit-University</span><span class="dot">·</span>
-      <span>North End</span><span class="dot">·</span>
-      <span>Como</span><span class="dot">·</span>
-      <span>Highland Park</span><span class="dot">·</span>
-      <span>Mac-Groveland</span><span class="dot">·</span>
-      <span>Summit Hill</span><span class="dot">·</span>
-      <span>Frogtown</span><span class="dot">·</span>
-      <span>Payne-Phalen</span><span class="dot">·</span>
-      <span>Summit-University</span><span class="dot">·</span>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="wm-host">
-    <div class="wm" aria-hidden="true" style="--rot:5deg;width:220px;height:220px;top:20px;left:-80px;"></div>
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">How it works</span>
-        <h2>Three steps to a clean yard</h2>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <span class="num">01</span>
-          <h3>Get a quote</h3>
-          <p>Tell us your address, dog count, and how often you want us — takes under a minute.</p>
-        </div>
-        <div class="step">
-          <span class="num">02</span>
-          <h3>We clean, on schedule</h3>
-          <p>Every other week, weekly, twice a week, or a one-time deep clean. Rain, shine, or snow.</p>
-        </div>
-        <div class="step">
-          <span class="num">03</span>
-          <h3>You get a text</h3>
-          <p>We text before we arrive, and again once your yard's been handled.</p>
-        </div>
-      </div>
-      <div class="steps-cta">
-        <a href="#quote" class="btn btn-honey btn-sm btn-quote">Get a Quote</a>
       </div>
     </div>
   </section>
@@ -446,27 +392,81 @@
   <section class="trust-section wm-host">
     <div class="wm" aria-hidden="true" style="--rot:-4deg;width:160px;height:160px;top:30px;right:-55px;"></div>
     <div class="wrap">
-      <ul class="trust-list">
-        <li>Tools sanitized with kennel-grade disinfectant between every yard.</li>
-        <li>Photo confirmation of your locked gate texted when we're done.</li>
-        <li>All waste hauled completely off your property — your bins stay odor-free.</li>
-        <li>Skip a week, pause for vacation, or cancel anytime — no fees.</li>
-      </ul>
+      <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto;">
+        <h2>Why choose us?</h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+          <div class="trust-text">
+          <h4>Local &amp; Family-Owned</h4>
+          <p>Proudly serving St. Paul &amp; the Twin Cities.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg></div>
+          <div class="trust-text">
+          <h4>No Contracts, Ever</h4>
+          <p>Skip a week, pause, or cancel anytime — no fees.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="4" y1="7" x2="20" y2="17"/><line x1="20" y1="7" x2="4" y2="17"/></svg></div>
+          <div class="trust-text">
+          <h4>Works Through Winter</h4>
+          <p>Rain, shine, or snow — we show up.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="trust-text">
+          <h4>Fully Insured</h4>
+          <p>For your complete peace of mind.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg></div>
+          <div class="trust-text">
+          <h4>Sanitized Between Yards</h4>
+          <p>Kennel-grade disinfectant, every visit.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.5"/><circle cx="17.5" cy="19" r="1.5"/></svg></div>
+          <div class="trust-text">
+          <h4>Nothing Left Behind</h4>
+          <p>All waste hauled completely off your property.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8l1.5-3h5L16 8"/><circle cx="12" cy="14" r="3.5"/></svg></div>
+          <div class="trust-text">
+          <h4>Photo Confirmed</h4>
+          <p>Gate-lock photo texted when we're done.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon"><svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+          <div class="trust-text">
+          <h4>15% Discount</h4>
+          <p>For seniors, veterans, and service dog households.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PRICING & ADD-ONS (accordion) -->
+  <!-- PRICING & ADD-ONS -->
   <section id="pricing" class="wm-host">
     <div class="wm" aria-hidden="true" style="--rot:7deg;width:240px;height:240px;top:60px;left:-90px;"></div>
     <div class="wrap">
-      <details class="accordion" id="pricing-accordion">
-        <summary>
+      <div class="accordion-static">
+        <div class="accordion-static-head">
           <span class="accordion-heading">
             <span class="eyebrow">Pricing</span>
             <span class="accordion-title">Simple, upfront pricing.</span>
           </span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
-        </summary>
+        </div>
         <div class="accordion-body">
       <div class="price-table-wrap">
         <table class="price-table">
@@ -477,56 +477,61 @@
             <tr>
               <td class="plan-name">Every Other Week</td>
               <td class="amt-sub" data-label="Visits/mo">2</td>
-              <td class="amt" data-label="1 Dog">$45–50/mo</td>
+              <td class="amt" data-label="1 Dog">$40/mo</td>
               <td class="amt-sub" data-label="Each additional dog">+$10/mo</td>
             </tr>
             <tr class="featured">
               <td class="plan-name">Weekly<span class="tag">Most popular</span></td>
               <td class="amt-sub" data-label="Visits/mo">4</td>
-              <td class="amt" data-label="1 Dog">$60–70/mo</td>
+              <td class="amt" data-label="1 Dog">$68/mo</td>
               <td class="amt-sub" data-label="Each additional dog">+$20/mo</td>
             </tr>
             <tr>
               <td class="plan-name">Twice a Week</td>
               <td class="amt-sub" data-label="Visits/mo">8</td>
-              <td class="amt" data-label="1 Dog">$95–110/mo</td>
+              <td class="amt" data-label="1 Dog">$120/mo</td>
               <td class="amt-sub" data-label="Each additional dog">+$40/mo</td>
             </tr>
             <tr>
               <td class="plan-name">One-Time</td>
               <td class="amt-sub" data-label="Visits/mo">1 visit</td>
-              <td class="amt" data-label="1 Dog">$79–129</td>
-              <td class="amt-sub" data-label="Each additional dog">+$8</td>
+              <td class="amt" data-label="1 Dog">$95</td>
+              <td class="amt-sub" data-label="Each additional dog">+$10</td>
+            </tr>
+            <tr>
+              <td class="plan-name">Spring Cleaning<span class="tag">Seasonal deep clean</span></td>
+              <td class="amt-sub" data-label="Visits/mo">1 visit</td>
+              <td class="amt" data-label="1 Dog">$169</td>
+              <td class="amt-sub" data-label="Each additional dog">+$15</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="price-note mono">
-        <div>+ $8–15/mo for large or wooded yards</div>
-        <div>+ $15/mo winter surcharge, Dec–Mar</div>
+        <div>Standard yards are 1/2 acre or less</div>
+        <div>+ $10/visit for large or wooded yards (confirmed on arrival)</div>
       </div>
       <div class="pricing-cta">
         <a href="#quote" class="btn btn-honey btn-sm btn-quote">Get my price</a>
       </div>
         </div>
-      </details>
+      </div>
 
-      <details class="accordion" id="addons">
-        <summary>
+      <div class="accordion-static" id="addons">
+        <div class="accordion-static-head">
           <span class="accordion-heading">
             <span class="eyebrow">Add-ons</span>
             <span class="accordion-title">Extra touches, when you want them</span>
           </span>
-          <span class="accordion-icon" aria-hidden="true">+</span>
-        </summary>
+        </div>
         <div class="accordion-body">
       <div class="addons">
-        <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that neutralizes odor and keeps your grass smelling fresh between visits. +$15/visit.</p></div>
-        <div class="addon"><h4>Patio & deck hosing</h4><p>We hose down patios and decks after cleanup — great for smaller urban lots. +$12/visit.</p></div>
-        <div class="addon"><h4>Kennel & run cleanup</h4><p>Dedicated cleaning for doghouse or kennel areas. +$8/visit.</p></div>
+        <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that neutralizes odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15/cleaning</p></div>
+        <div class="addon"><h4>Patio & deck hosing</h4><p>We hose down patios and decks after cleanup — great for smaller urban lots.</p><p class="addon-price">+$12/cleaning</p></div>
+        <div class="addon"><h4>Kennel & run cleanup</h4><p>Dedicated cleaning for doghouse or kennel areas.</p><p class="addon-price">+$8/cleaning</p></div>
       </div>
         </div>
-      </details>
+      </div>
     </div>
   </section>
 
@@ -572,7 +577,140 @@
     </div>
   </section>
 
+  <!-- LARGE LOGO LOCKUP — color block -->
+  <section class="area-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>North End</span><span class="dot">·</span>
+      <span>Como</span><span class="dot">·</span>
+      <span>Highland Park</span><span class="dot">·</span>
+      <span>Mac-Groveland</span><span class="dot">·</span>
+      <span>Summit Hill</span><span class="dot">·</span>
+      <span>Frogtown</span><span class="dot">·</span>
+      <span>Payne-Phalen</span><span class="dot">·</span>
+      <span>Summit-University</span><span class="dot">·</span>
+      <span>North End</span><span class="dot">·</span>
+      <span>Como</span><span class="dot">·</span>
+      <span>Highland Park</span><span class="dot">·</span>
+      <span>Mac-Groveland</span><span class="dot">·</span>
+      <span>Summit Hill</span><span class="dot">·</span>
+      <span>Frogtown</span><span class="dot">·</span>
+      <span>Payne-Phalen</span><span class="dot">·</span>
+      <span>Summit-University</span><span class="dot">·</span>
+    </div>
+  </section>
+
   <div class="wrap"><hr class="rule"></div>
+
+  <!-- FAQ -->
+  <section id="faq" class="wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:4deg;width:190px;height:190px;top:60px;left:-70px;"></div>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Good to know.</h2>
+      </div>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Can I skip a visit or pause service?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes — skip a week, pause for a vacation, or cancel anytime. No fees, no penalties. Just let us know.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What happens if it snows on my scheduled day?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>We provide year-round service, including through Minnesota winters. If fresh snowfall makes part of your yard inaccessible, some areas may be missed during that visit — in that case, we'll offer a refund or credit for the missed area.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Do you skip visits when it rains?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Light rain isn't a problem — we keep our route running as scheduled. In severe weather, we pause the route and resume once it clears, which may shift your visit slightly that day.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What if my dog is aggressive or doesn't do well with strangers in the yard?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>For our insurance coverage, all dogs need to be kept inside or away from the area being serviced during your visit. Just let us know ahead of time and we'll work around your dog's routine.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">How does billing work?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>You're billed monthly, in advance — we send an invoice for the upcoming month before your next round of visits begins.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What payment methods do you accept?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>We accept credit and debit cards, as well as Venmo.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What if there's a lot of buildup since I haven't had this done in a while?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No problem — we'll treat your first visit as a One-Time Cleaning to get your yard fully caught up, then your regular plan pricing kicks in starting with your next scheduled visit.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What if I'm not happy with a visit?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Your satisfaction is guaranteed. If a visit doesn't meet expectations, let us know and we'll make it right with a refund or credit.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Do I need to be home, or do anything after my first visit?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No — once your schedule is set up, service runs automatically. It's a reliable, contact-free routine: we show up on your chosen schedule, and you'll get a text with photo confirmation after every visit.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Do you offer a referral discount?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes — refer a friend and you'll both get $10 off a recurring monthly plan once they sign up. It's a one-time thank-you per referral.</p>
+        </div>
+      </details>
+    </div>
+  </section>
 
   <!-- QUOTE QUESTIONNAIRE -->
   <section id="quote" class="wm-host">
@@ -613,6 +751,7 @@
             <button type="button" class="quote-opt" data-value="twice">Twice a Week</button>
             <button type="button" class="quote-opt" data-value="eow">Every Other Week</button>
             <button type="button" class="quote-opt" data-value="onetime">One-Time</button>
+            <button type="button" class="quote-opt" data-value="spring">Spring Cleaning <span class="sub">Seasonal deep clean</span></button>
           </div>
         </div>
 
@@ -620,8 +759,8 @@
         <div class="quote-step" data-step="3">
           <div class="quote-question">How's your yard?</div>
           <div class="quote-options single-col" data-group="yard">
-            <button type="button" class="quote-opt" data-value="standard">Standard size</button>
-            <button type="button" class="quote-opt" data-value="large">Large or wooded <span class="sub">Takes a bit more time</span></button>
+            <button type="button" class="quote-opt" data-value="standard">Standard size <span class="sub">1/2 acre or less</span></button>
+            <button type="button" class="quote-opt" data-value="large">Large or wooded <span class="sub">+$10/visit — confirmed on arrival</span></button>
           </div>
         </div>
 
@@ -629,10 +768,17 @@
         <div class="quote-step" data-step="4">
           <div class="quote-question">Want any extras?</div>
           <div class="quote-options single-col" data-group="extras" data-multi="true">
-            <button type="button" class="quote-opt" data-value="deodorize">Yard deodorizing</button>
-            <button type="button" class="quote-opt" data-value="patio">Patio & deck hosing</button>
-            <button type="button" class="quote-opt" data-value="kennel">Kennel / run cleanup</button>
+            <button type="button" class="quote-opt" data-value="deodorize">Yard deodorizing <span class="sub">$15/cleaning</span></button>
+            <button type="button" class="quote-opt" data-value="patio">Patio & deck hosing <span class="sub">$12/cleaning</span></button>
+            <button type="button" class="quote-opt" data-value="kennel">Kennel / run cleanup <span class="sub">$8/cleaning</span></button>
             <button type="button" class="quote-opt" data-value="none">None</button>
+          </div>
+          <div id="extras-frequency-block" style="display:none;margin-top:22px;">
+            <div class="quote-question" style="font-size:16px;margin-bottom:10px;">How often should we apply these?</div>
+            <div class="quote-options single-col" data-group="extrasFrequency">
+              <button type="button" class="quote-opt selected" data-value="every">Every visit</button>
+              <button type="button" class="quote-opt" data-value="monthly">Once a month</button>
+            </div>
           </div>
         </div>
 
@@ -658,7 +804,9 @@
               </div>
               <div class="field">
                 <label for="q-notes">Notes (optional)</label>
-                <textarea id="q-notes" name="notes" rows="3" placeholder="Gate code, best time to reach you, anything else we should know"></textarea>
+                <p class="lot-size-hint">Senior, veteran, or service dog household? Let us know below to apply your 15% discount.</p>
+                <p class="lot-size-hint" id="lot-size-hint" style="display:none;">Large or wooded yard selected — let us know your approximate lot size below. Final pricing for oversized lots is confirmed on arrival.</p>
+                <textarea id="q-notes" name="notes" rows="3" placeholder="Discount eligibility, gate code, best time to reach you, yard size, anything else we should know"></textarea>
               </div>
               <input type="hidden" name="quote_summary" id="q-summary">
               <button type="submit" class="btn btn-solid book-btn" data-fs-submit-btn id="book-btn">Book at $—/mo →</button>
@@ -731,17 +879,18 @@
 
       <script>
         (function(){
-          var state = { dogs:null, frequency:null, yard:null, extras:[] };
+          var state = { dogs:null, frequency:null, yard:null, extras:[], extrasFrequency:'every' };
           var current = 1;
 
           var basePrices = {
-            weekly:{label:"Weekly", base:65, mo:4},
-            twice:{label:"Twice a Week", base:102, mo:8},
-            eow:{label:"Every Other Week", base:48, mo:2},
-            onetime:{label:"One-Time", base:104, mo:1}
+            weekly:{label:"Weekly", base:68, mo:4},
+            twice:{label:"Twice a Week", base:120, mo:8},
+            eow:{label:"Every Other Week", base:40, mo:2},
+            onetime:{label:"One-Time", base:95, mo:1},
+            spring:{label:"Spring Cleaning", base:169, mo:1}
           };
-          var perDog = { weekly:20, twice:40, eow:10, onetime:8 };
-          var yardFee = { weekly:10, twice:15, eow:8, onetime:15 };
+          var perDog = { weekly:20, twice:40, eow:10, onetime:10, spring:15 };
+          var yardFeePerVisit = 10;
           var extraPrices = {
             deodorize:{label:"Yard deodorizing", amt:15},
             patio:{label:"Patio & deck hosing", amt:12},
@@ -749,6 +898,16 @@
           };
 
           function fmt(n){ return "$" + n; }
+
+          function isRecurring(freq){
+            return freq === 'weekly' || freq === 'twice' || freq === 'eow';
+          }
+
+          function updateExtrasFrequencyVisibility(){
+            var block = document.getElementById('extras-frequency-block');
+            if(!block) return;
+            block.style.display = (state.extras.length > 0 && isRecurring(state.frequency)) ? '' : 'none';
+          }
 
           function updateDots(){
             document.querySelectorAll('.p-dot').forEach(function(d){
@@ -767,6 +926,7 @@
             if(n === 5){ nextBtn.style.display = 'none'; }
             else { nextBtn.style.display = 'inline-flex'; validateNext(n); }
             updateDots();
+            if(n === 4){ updateExtrasFrequencyVisibility(); }
             if(typeof gtag === 'function'){
               gtag('event', 'quote_step_viewed', { step: n });
               if(n === 5){ gtag('event', 'quote_price_viewed'); }
@@ -806,6 +966,7 @@
                     if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); }
                     else { state.extras.push(val); btn.classList.add('selected'); }
                   }
+                  updateExtrasFrequencyVisibility();
                 } else {
                   group.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
                   btn.classList.add('selected');
@@ -832,6 +993,8 @@
             var plan = basePrices[freq];
             var lines = [];
             var total = 0;
+            var visits = plan.mo;
+            var recurring = isRecurring(freq);
 
             var base = plan.base;
             lines.push({ label: plan.label + " service (1 dog)", amt: base });
@@ -844,19 +1007,22 @@
             }
 
             if(state.yard === 'large'){
-              var yf = yardFee[freq];
-              lines.push({ label: "Large / wooded yard", amt: yf });
+              var yf = yardFeePerVisit * visits;
+              lines.push({ label: "Large / wooded yard" + (recurring ? " (" + visits + " visits)" : ""), amt: yf });
               total += yf;
             }
 
+            var extrasEveryVisit = recurring && state.extrasFrequency === 'every';
             state.extras.forEach(function(e){
               var ex = extraPrices[e];
               if(!ex) return;
-              lines.push({ label: ex.label, amt: ex.amt });
-              total += ex.amt;
+              var amt = extrasEveryVisit ? ex.amt * visits : ex.amt;
+              var freqNote = recurring ? (extrasEveryVisit ? " (every visit)" : " (monthly)") : "";
+              lines.push({ label: ex.label + freqNote, amt: amt });
+              total += amt;
             });
 
-            var unit = (freq === 'onetime') ? '' : '/mo';
+            var unit = (freq === 'onetime' || freq === 'spring') ? '' : '/mo';
             var html = '';
             lines.forEach(function(l){
               html += '<div class="line"><span>' + l.label + '</span><span>' + fmt(l.amt) + unit + '</span></div>';
@@ -864,7 +1030,10 @@
             html += '<div class="total"><span>Your price</span><span>' + fmt(total) + unit + '</span></div>';
             document.getElementById('quote-breakdown').innerHTML = html;
 
-            var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "none, ") + "total " + fmt(total) + unit;
+            var lotHint = document.getElementById('lot-size-hint');
+            if(lotHint){ lotHint.style.display = (state.yard === 'large') ? '' : 'none'; }
+
+            var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + " (" + state.extrasFrequency + "), " : "none, ") + "total " + fmt(total) + unit;
             document.getElementById('q-summary').value = summary;
             document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
             window.lastQuoteTotal = total;
@@ -873,67 +1042,6 @@
           showStep(1);
         })();
       </script>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="wm-host">
-    <div class="wm" aria-hidden="true" style="--rot:4deg;width:190px;height:190px;top:60px;left:-70px;"></div>
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">FAQ</span>
-        <h2>Good to know.</h2>
-      </div>
-
-      <details class="faq-item">
-        <summary>
-          <span class="faq-question">Can I skip a visit or pause service?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </summary>
-        <div class="faq-answer">
-          <p>Yes — skip a week, pause for a vacation, or cancel anytime. No fees, no penalties. Just let us know.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span class="faq-question">What happens if it snows on my scheduled day?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </summary>
-        <div class="faq-answer">
-          <p>We provide year-round service, including through Minnesota winters. If fresh snowfall makes part of your yard inaccessible, some areas may be missed during that visit — in that case, we'll offer a refund or credit for the missed area.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span class="faq-question">How does billing work?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </summary>
-        <div class="faq-answer">
-          <p>You're billed monthly, in advance — we send an invoice for the upcoming month before your next round of visits begins.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span class="faq-question">What if I'm not happy with a visit?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </summary>
-        <div class="faq-answer">
-          <p>Your satisfaction is guaranteed. If a visit doesn't meet expectations, let us know and we'll make it right with a refund or credit.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span class="faq-question">Do I need to be home, or do anything after my first visit?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </summary>
-        <div class="faq-answer">
-          <p>No — once your schedule is set up, service runs automatically. It's a reliable, contact-free routine: we show up on your chosen schedule, and you'll get a text with photo confirmation after every visit.</p>
-        </div>
-      </details>
     </div>
   </section>
 
