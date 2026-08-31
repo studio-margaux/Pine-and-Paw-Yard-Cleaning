@@ -145,10 +145,40 @@
   @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
   @media(max-width:640px){.marquee-track span{font-size:12px;}}
 
+  /* ---------- BEFORE / AFTER ---------- */
+  .ba-grid{display:flex;flex-direction:column;gap:28px;}
+  .ba-pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:16px;overflow:hidden;background:var(--line);}
+  .ba-photo{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--pine-deep);}
+  .ba-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ba-tag{position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono';font-size:11px;text-transform:uppercase;letter-spacing:0.06em;padding:5px 11px;border-radius:999px;color:var(--paper);background:rgba(22,40,31,0.72);backdrop-filter:blur(3px);}
+  .ba-tag.ba-after{background:rgba(169,124,63,0.85);}
+  .ba-caption{font-family:'IBM Plex Mono';font-size:12.5px;color:#7d735d;margin-top:10px;padding:0 2px;}
+  @media(max-width:560px){.ba-pair{grid-template-columns:1fr;}}
+
+  /* ---------- DOG PHOTO WALL ---------- */
+  .dog-marquee{width:100%;background:var(--pine-deep);padding:26px 0;overflow:hidden;}
+  .dog-marquee-track{display:inline-flex;align-items:center;gap:20px;animation:dogMarqueeScroll 40s linear infinite;padding:0 10px;}
+  .dog-marquee:hover .dog-marquee-track{animation-play-state:paused;}
+  .dog-photo{flex-shrink:0;width:190px;height:230px;border-radius:6px;overflow:hidden;background:var(--paper);padding:8px 8px 24px;box-shadow:0 10px 24px -10px rgba(0,0,0,0.5);transform:rotate(var(--tilt,0deg));}
+  .dog-photo img{width:100%;height:100%;object-fit:cover;border-radius:2px;}
+  @keyframes dogMarqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media(prefers-reduced-motion:reduce){.dog-marquee-track{animation:none;}}
+  @media(max-width:640px){.dog-photo{width:150px;height:186px;padding:6px 6px 18px;}}
+
+  /* ---------- ABOUT ---------- */
+  .about-section{background:var(--pine-deep);}
+  .about-card{max-width:560px;}
+  .about-photo{width:120px;height:120px;border-radius:999px;overflow:hidden;margin:0 0 24px;border:3px solid rgba(255,255,255,0.14);}
+  .about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .about-card .eyebrow{color:#a7b09f;}
+  .about-card h2{color:var(--paper);}
+  .about-card p{color:#cfd6c9;font-size:16.5px;max-width:46ch;margin:16px 0 0;}
+  .about-sign{margin-top:20px;font-family:'Fraunces';font-style:italic;font-weight:500;font-size:19px;color:var(--honey);}
+
   /* ---------- PHOTOS (full-bleed, letterboxed on wide screens) ---------- */
   .photo-section{width:100%;background:var(--pine-deep);padding:0;}
   .photo-inner{max-width:1600px;margin:0 auto;overflow:hidden;}
-  .photo-inner img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-inner img,.photo-inner video{width:100%;height:100%;object-fit:cover;display:block;}
   .photo-hero .photo-inner{aspect-ratio:21/8;}
   .photo-mid .photo-inner{aspect-ratio:21/9;}
   .photo-end .photo-inner{aspect-ratio:21/9;}
@@ -338,6 +368,7 @@
       </span>
     </a>
     <ul class="nav-links">
+      <li><a href="#results">Results</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#addons">Add-ons</a></li>
     </ul>
@@ -370,7 +401,17 @@
   <!-- HERO PHOTO — now leads the page -->
   <section class="photo-section photo-hero">
     <div class="photo-inner">
-      <img src="pine-paw-hero.jpg" alt="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch" fetchpriority="high">
+      <video
+        src="pine-paw-hero.mp4"
+        poster="pine-paw-hero.jpg"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto"
+        aria-label="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
@@ -380,7 +421,7 @@
     <div class="wrap hero-inner">
       <span class="hero-tagline">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Clean yards for happy paws.</h1>
-      <p class="lead">Dog waste removal & yard sanitation for St. Paul homes. Locally owned, no contracts, working through every Minnesota season — including the snowy ones.</p>
+      <p class="lead">We take dog waste removal and yard sanitation off your plate — locally owned, no contracts, and yes, we still show up when it's snowing.</p>
       <div class="hero-price-block">
         <p class="hero-price-note">Plans start at $40/mo.</p>
         <a href="#quote" class="btn btn-honey hero-price-cta">Get my price</a>
@@ -400,7 +441,7 @@
           <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
           <div class="trust-text">
           <h4>Local &amp; Family-Owned</h4>
-          <p>Proudly serving St. Paul &amp; the Twin Cities.</p>
+          <p>We live here too — proud to serve St. Paul &amp; the Twin Cities.</p>
           </div>
         </div>
         <div class="trust-card">
@@ -421,28 +462,28 @@
           <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="trust-text">
           <h4>Fully Insured</h4>
-          <p>For your complete peace of mind.</p>
+          <p>So that's one less thing you have to worry about.</p>
           </div>
         </div>
         <div class="trust-card">
           <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg></div>
           <div class="trust-text">
           <h4>Sanitized Between Yards</h4>
-          <p>Kennel-grade disinfectant, every visit.</p>
+          <p>We clean our tools between every yard, every visit.</p>
           </div>
         </div>
         <div class="trust-card">
           <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.5"/><circle cx="17.5" cy="19" r="1.5"/></svg></div>
           <div class="trust-text">
           <h4>Nothing Left Behind</h4>
-          <p>All waste hauled completely off your property.</p>
+          <p>We haul it all away — your bins stay clean.</p>
           </div>
         </div>
         <div class="trust-card">
           <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8l1.5-3h5L16 8"/><circle cx="12" cy="14" r="3.5"/></svg></div>
           <div class="trust-text">
           <h4>Photo Confirmed</h4>
-          <p>Gate-lock photo texted when we're done.</p>
+          <p>We'll text you a photo of the locked gate when we're done.</p>
           </div>
         </div>
         <div class="trust-card">
@@ -453,6 +494,57 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section id="results" class="wm-host">
+    <div class="wm" aria-hidden="true" style="--rot:5deg;width:220px;height:220px;top:40px;left:-85px;"></div>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">See it for yourself</span>
+        <h2>Same yard, twenty minutes apart.</h2>
+        <p>No staging, no tricks — just what our crew actually leaves behind.</p>
+      </div>
+      <div class="ba-grid">
+        <div>
+          <div class="ba-pair">
+            <div class="ba-photo"><img src="images/pine-paw-before-1.jpg" alt="A St. Paul backyard with dog waste scattered near the tree line and fence before a Pine & Paw visit" loading="lazy"><span class="ba-tag ba-before">Before</span></div>
+            <div class="ba-photo"><img src="images/pine-paw-after-1.jpg" alt="The same backyard completely cleared of dog waste after a Pine & Paw visit" loading="lazy"><span class="ba-tag ba-after">After</span></div>
+          </div>
+          <p class="ba-caption">Como neighborhood — every-other-week plan</p>
+        </div>
+        <div>
+          <div class="ba-pair">
+            <div class="ba-photo"><img src="images/pine-paw-before-2.jpg" alt="Backyard along a privacy fence before a Pine & Paw cleanup" loading="lazy"><span class="ba-tag ba-before">Before</span></div>
+            <div class="ba-photo"><img src="images/pine-paw-after-2.jpg" alt="The same fence line cleared after a Pine & Paw cleanup" loading="lazy"><span class="ba-tag ba-after">After</span></div>
+          </div>
+          <p class="ba-caption">Highland Park — weekly plan</p>
+        </div>
+        <div>
+          <div class="ba-pair">
+            <div class="ba-photo"><img src="images/pine-paw-before-3.jpg" alt="Backyard near a shed before a Pine & Paw cleanup" loading="lazy"><span class="ba-tag ba-before">Before</span></div>
+            <div class="ba-photo"><img src="images/pine-paw-after-3.jpg" alt="The same yard cleared after a Pine & Paw cleanup" loading="lazy"><span class="ba-tag ba-after">After</span></div>
+          </div>
+          <p class="ba-caption">Mac-Groveland — one-time cleanup</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOG PHOTO WALL -->
+  <section class="dog-marquee" aria-hidden="true">
+    <div class="dog-marquee-track">
+      <div class="dog-photo" style="--tilt:-3deg;"><img src="images/pine-paw-frenchie.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:2deg;"><img src="images/pine-paw-gsd-snow.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:-2deg;"><img src="images/pine-paw-poodle-mix.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:3deg;"><img src="images/pine-paw-greyhounds.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:-1deg;"><img src="images/pine-paw-great-dane.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:2deg;"><img src="images/pine-paw-frenchie.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:-3deg;"><img src="images/pine-paw-gsd-snow.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:2deg;"><img src="images/pine-paw-poodle-mix.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:-2deg;"><img src="images/pine-paw-greyhounds.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:3deg;"><img src="images/pine-paw-great-dane.jpg" alt=""></div>
     </div>
   </section>
 
@@ -526,9 +618,9 @@
         </div>
         <div class="accordion-body">
       <div class="addons">
-        <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that neutralizes odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15/cleaning</p></div>
-        <div class="addon"><h4>Patio & deck hosing</h4><p>We hose down patios and decks after cleanup — great for smaller urban lots.</p><p class="addon-price">+$12/cleaning</p></div>
-        <div class="addon"><h4>Kennel & run cleanup</h4><p>Dedicated cleaning for doghouse or kennel areas.</p><p class="addon-price">+$8/cleaning</p></div>
+        <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that knocks out the odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15/cleaning</p></div>
+        <div class="addon"><h4>Patio & deck hosing</h4><p>We'll hose down your patio or deck after cleanup — great if you've got a smaller urban lot.</p><p class="addon-price">+$12/cleaning</p></div>
+        <div class="addon"><h4>Kennel & run cleanup</h4><p>Got a doghouse or kennel area? We'll clean that up too.</p><p class="addon-price">+$8/cleaning</p></div>
       </div>
         </div>
       </div>
@@ -1048,6 +1140,22 @@
   <section class="photo-section photo-end">
     <div class="photo-inner">
       <img src="pine-paw-dog.jpg" alt="A calm golden retriever sitting in a tidy St. Paul backyard" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="wrap">
+      <div class="about-card">
+        <div class="about-photo">
+          <img src="images/pine-paw-about-maggie.jpg" alt="Maggie, owner of Pine & Paw Yard Cleaning, with her son and their dog" loading="lazy">
+        </div>
+        <span class="eyebrow">About Us</span>
+        <h2>Welcome, neighbor!</h2>
+        <p>I'm Maggie. Pine & Paw started as a little chore I gave my son to help him learn how to take care of animals. Our neighbors noticed, started asking if we'd do their yards too, and it just grew from there.</p>
+        <p>We're proud to call St. Paul home, and we treat every yard like it belongs to a neighbor. Because it does.</p>
+        <p class="about-sign">Maggie</p>
+      </div>
     </div>
   </section>
 
