@@ -156,7 +156,9 @@
   @media(max-width:560px){.ba-pair{grid-template-columns:1fr;}}
 
   /* ---------- DOG PHOTO WALL ---------- */
-  .dog-marquee{width:100%;background:var(--pine-deep);padding:26px 0;overflow:hidden;}
+  .dog-marquee-section{width:100%;background:var(--pine-deep);padding:32px 0 6px;}
+  .dog-marquee-title{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:17px;color:var(--honey);text-align:center;margin-bottom:6px;}
+  .dog-marquee{width:100%;overflow:hidden;}
   .dog-marquee-track{display:inline-flex;align-items:center;gap:20px;animation:dogMarqueeScroll 40s linear infinite;padding:0 10px;}
   .dog-marquee:hover .dog-marquee-track{animation-play-state:paused;}
   .dog-photo{flex-shrink:0;width:190px;height:230px;border-radius:6px;overflow:hidden;background:var(--paper);padding:8px 8px 24px;box-shadow:0 10px 24px -10px rgba(0,0,0,0.5);transform:rotate(var(--tilt,0deg));}
@@ -502,9 +504,7 @@
     <div class="wm" aria-hidden="true" style="--rot:5deg;width:220px;height:220px;top:40px;left:-85px;"></div>
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">See it for yourself</span>
-        <h2>Same yard, twenty minutes apart.</h2>
-        <p>No staging, no tricks — just what our crew actually leaves behind.</p>
+        <span class="eyebrow">See for yourself</span>
       </div>
       <div class="ba-grid">
         <div>
@@ -518,7 +518,9 @@
   </section>
 
   <!-- DOG PHOTO WALL -->
-  <section class="dog-marquee" aria-hidden="true">
+  <section class="dog-marquee-section">
+    <p class="dog-marquee-title">Pups we serve 🐾</p>
+    <div class="dog-marquee" aria-hidden="true">
     <div class="dog-marquee-track">
       <div class="dog-photo" style="--tilt:-3deg;"><img src="pine-paw-frenchie.jpg" alt=""></div>
       <div class="dog-photo" style="--tilt:2deg;"><img src="pine-paw-gsd-snow.jpg" alt=""></div>
@@ -530,6 +532,7 @@
       <div class="dog-photo" style="--tilt:2deg;"><img src="pine-paw-poodle-mix.jpg" alt=""></div>
       <div class="dog-photo" style="--tilt:-2deg;"><img src="pine-paw-greyhounds.jpg" alt=""></div>
       <div class="dog-photo" style="--tilt:3deg;"><img src="pine-paw-great-dane.jpg" alt=""></div>
+    </div>
     </div>
   </section>
 
@@ -1119,12 +1122,6 @@
           showStep(1);
         })();
       </script>
-    </div>
-  </section>
-
-  <section class="photo-section photo-end">
-    <div class="photo-inner">
-      <img src="pine-paw-dog.jpg" alt="A calm golden retriever sitting in a tidy St. Paul backyard" loading="lazy">
     </div>
   </section>
 
