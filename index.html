@@ -58,7 +58,7 @@
     { "@type": "Offer", "name": "Weekly dog waste removal", "price": "68", "priceCurrency": "USD" },
     { "@type": "Offer", "name": "Twice a Week dog waste removal", "price": "120", "priceCurrency": "USD" },
     { "@type": "Offer", "name": "One-Time dog waste cleanup", "price": "95", "priceCurrency": "USD" },
-    { "@type": "Offer", "name": "Spring Cleaning deep cleanup", "price": "169", "priceCurrency": "USD" }
+    { "@type": "Offer", "name": "Spring Cleaning deep cleanup", "price": "169", "priceCurrency": "USD", "description": "Seasonal deep cleanup, offered in spring" }
   ]
 }
 </script>
@@ -594,12 +594,6 @@
               <td class="amt" data-label="1 Dog">$95</td>
               <td class="amt-sub" data-label="Each additional dog">+$10</td>
             </tr>
-            <tr class="price-row" data-plan="spring" role="button" tabindex="0" aria-label="Choose Spring Cleaning and get your price">
-              <td class="plan-name"><span class="plan-name-row"><span class="plan-name-text">Spring Cleaning<span class="tag">Seasonal</span></span><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span></td>
-              <td class="amt-sub" data-label="Visits/mo">1 visit</td>
-              <td class="amt" data-label="1 Dog">$169</td>
-              <td class="amt-sub" data-label="Each additional dog">+$15</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -697,7 +691,6 @@
             <button type="button" class="quote-opt" data-value="twice">Twice a Week</button>
             <button type="button" class="quote-opt" data-value="eow">Every Other Week</button>
             <button type="button" class="quote-opt" data-value="onetime">One-Time</button>
-            <button type="button" class="quote-opt" data-value="spring">Spring Cleaning <span class="sub">Seasonal</span></button>
           </div>
         </div>
 
@@ -875,10 +868,9 @@
             weekly:{label:"Weekly", base:68, mo:4},
             twice:{label:"Twice a Week", base:120, mo:8},
             eow:{label:"Every Other Week", base:40, mo:2},
-            onetime:{label:"One-Time", base:95, mo:1},
-            spring:{label:"Spring Cleaning", base:169, mo:1}
+            onetime:{label:"One-Time", base:95, mo:1}
           };
-          var perDog = { weekly:20, twice:40, eow:10, onetime:10, spring:15 };
+          var perDog = { weekly:20, twice:40, eow:10, onetime:10 };
           var yardFeePerVisit = 10;
           var extraPrices = {
             deodorize:{label:"Yard deodorizing", amt:15},
@@ -1016,7 +1008,7 @@
               total += amt;
             });
 
-            var unit = (freq === 'onetime' || freq === 'spring') ? '' : '/mo';
+            var unit = (freq === 'onetime') ? '' : '/mo';
             var html = '';
             lines.forEach(function(l){
               html += '<div class="line"><span>' + l.label + '</span><span>' + fmt(l.amt) + unit + '</span></div>';
