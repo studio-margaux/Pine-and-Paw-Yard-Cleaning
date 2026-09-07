@@ -952,11 +952,17 @@
                     if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); }
                     else { state.extras.push(val); btn.classList.add('selected'); }
                   }
+                  if(typeof gtag === 'function'){
+                    gtag('event', 'quote_option_selected', { question: key, value: val });
+                  }
                   updateExtrasFrequencyVisibility();
                 } else {
                   group.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
                   btn.classList.add('selected');
                   state[key] = val;
+                  if(typeof gtag === 'function'){
+                    gtag('event', 'quote_option_selected', { question: key, value: val });
+                  }
                   validateNext(current);
                   setTimeout(function(){ if(current < 4){ goNext(); } }, 220);
                 }
