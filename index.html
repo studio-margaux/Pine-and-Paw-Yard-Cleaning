@@ -192,7 +192,7 @@
   /* ---------- PRICING / ADD-ONS CONTAINER ---------- */
   .accordion-static{border:1px solid rgba(255,255,255,0.14);border-radius:18px;background:var(--pine-deep);overflow:hidden;}
   .accordion-static + .accordion-static{margin-top:16px;}
-  .accordion-static-head{padding:22px 26px 6px;}
+  .accordion-static-head{padding:22px 26px 14px;}
   .accordion-static-head .eyebrow{color:#a7b09f;}
   .accordion-heading{display:flex;flex-direction:column;gap:6px;}
   .accordion-title{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--paper);}
@@ -258,6 +258,9 @@
   .price-note{margin-top:20px;background:rgba(255,255,255,0.06);border:1px dashed rgba(255,255,255,0.22);border-radius:12px;padding:14px 20px;font-size:13px;color:#cfd6c9;}
   .price-note div + div{margin-top:6px;}
 
+  .accordion-intro{font-family:'Inter';font-size:14.5px;color:#cfd6c9;max-width:52ch;margin-top:12px;line-height:1.55;}
+  .accordion-intro strong{color:var(--paper);font-weight:600;}
+
   @media(min-width:641px){
     .price-table tbody tr:last-child td{border-bottom:none;}
   }
@@ -314,6 +317,11 @@
   .quote-breakdown{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:22px;font-family:'IBM Plex Mono';font-size:14px;}
   .quote-breakdown .line{display:flex;justify-content:space-between;padding:5px 0;color:#4a4436;}
   .quote-breakdown .total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px solid var(--line);font-weight:600;color:var(--pine-deep);font-size:16px;}
+  .quote-billing-toggle{margin-bottom:18px;}
+  .quote-save-note{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-bottom:10px;}
+  .quote-billing-switch{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px;}
+  .quote-billing-btn{border:none;background:transparent;font-family:'IBM Plex Mono';font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:#7d735d;padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .15s;}
+  .quote-billing-btn.active{background:var(--pine-deep);color:var(--paper);}
   .quote-contact .field{margin-bottom:16px;}
   .quote-contact label{display:block;font-size:13px;font-weight:600;color:var(--pine-deep);margin-bottom:6px;}
   .field-hint{font-size:12.5px;color:#7d735d;margin:-2px 0 8px;line-height:1.5;}
@@ -519,7 +527,7 @@
           <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.5"/><circle cx="17.5" cy="19" r="1.5"/></svg></div>
           <div class="trust-text">
           <h4>Nothing Left Behind</h4>
-          <p>We haul it all away — your bins stay clean.</p>
+          <p>Waste is bagged and placed in your bin — or we'll haul it off-site for a small add-on.</p>
           </div>
         </div>
         <div class="trust-card">
@@ -562,6 +570,7 @@
             <span class="eyebrow">Pricing</span>
             <span class="accordion-title">Choose your frequency.</span>
           </span>
+          <p class="accordion-intro">Prices below are billed monthly. Prefer to pay per visit? That option's available when you get your price.</p>
         </div>
         <div class="accordion-body">
       <div class="price-table-wrap">
@@ -607,7 +616,7 @@
         <div class="addons">
           <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that knocks out the odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15/cleaning</p></div>
           <div class="addon"><h4>Patio & deck hosing</h4><p>We'll hose down your patio or deck after cleanup — great if you've got a smaller urban lot.</p><p class="addon-price">+$12/cleaning</p></div>
-          <div class="addon"><h4>Kennel & run cleanup</h4><p>Got a doghouse or kennel area? We'll clean that up too.</p><p class="addon-price">+$8/cleaning</p></div>
+          <div class="addon"><h4>Off-site removal</h4><p>We'll haul the waste away with us instead of leaving it in your bin — done.</p><p class="addon-price">+$5/cleaning</p></div>
         </div>
       </div>
 
@@ -645,7 +654,7 @@
         </div>
         <div class="expect-item">
           <span class="expect-num">05</span>
-          <p><strong>Bag & haul.</strong> All waste is bagged and hauled away, so your trash cans stay clean and odor-free.</p>
+          <p><strong>Bag & bin.</strong> All waste is bagged and placed in your trash bin, ready for pickup. Want it hauled off-site instead? Add that on for $5/cleaning.</p>
         </div>
         <div class="expect-item">
           <span class="expect-num">06</span>
@@ -709,7 +718,7 @@
           <div class="quote-options single-col" data-group="extras" data-multi="true">
             <button type="button" class="quote-opt" data-value="deodorize">Yard deodorizing <span class="sub">$15/cleaning</span></button>
             <button type="button" class="quote-opt" data-value="patio">Patio & deck hosing <span class="sub">$12/cleaning</span></button>
-            <button type="button" class="quote-opt" data-value="kennel">Kennel / run cleanup <span class="sub">$8/cleaning</span></button>
+            <button type="button" class="quote-opt" data-value="offsite">Off-site removal <span class="sub">$5/cleaning</span></button>
           </div>
         </div>
 
@@ -717,6 +726,13 @@
         <div class="quote-step" data-step="3">
           <div class="quote-result">
             <h3>Here's your price</h3>
+            <div class="quote-billing-toggle" id="quote-billing-toggle" style="display:none;">
+              <p class="quote-save-note" id="quote-save-note">Save 15% when billed monthly</p>
+              <div class="quote-billing-switch" role="group" aria-label="Choose how you'd like to be billed">
+                <button type="button" class="quote-billing-btn" data-value="perVisit">Pay Per Visit</button>
+                <button type="button" class="quote-billing-btn active" data-value="prepay">Billed Monthly</button>
+              </div>
+            </div>
             <div class="quote-breakdown" id="quote-breakdown"></div>
 
             <form id="quote-form" class="quote-contact">
@@ -821,22 +837,45 @@
 
       <script>
         (function(){
-          var state = { dogs:null, frequency:null, yard:null, extras:[] };
+          var state = { dogs:null, frequency:null, billing:null, yard:null, extras:[] };
+
+          function setupBillingToggle(freq){
+            var wrap = document.getElementById('quote-billing-toggle');
+            var note = document.getElementById('quote-save-note');
+            if(!wrap || !note) return;
+            if(freq === 'onetime'){
+              wrap.style.display = 'none';
+              state.billing = null;
+              return;
+            }
+            wrap.style.display = '';
+            var plan = basePrices[freq];
+            if(plan){
+              var monthlyEquivAtPerVisit = plan.perVisit * plan.mo;
+              var savePct = Math.round((1 - (plan.prepay / monthlyEquivAtPerVisit)) * 100);
+              note.textContent = "Save " + savePct + "% when billed monthly";
+            }
+            if(!state.billing){ state.billing = 'prepay'; }
+            wrap.querySelectorAll('.quote-billing-btn').forEach(function(b){
+              b.classList.toggle('active', b.dataset.value === state.billing);
+            });
+          }
           var current = 1;
           var TOTAL_STEPS = 3;
 
           var basePrices = {
-            weekly:{label:"Weekly", base:68, mo:4},
-            twice:{label:"Twice a Week", base:120, mo:8},
-            eow:{label:"Every Other Week", base:40, mo:2},
-            onetime:{label:"One-Time", base:95, mo:1}
+            weekly:{label:"Weekly", prepay:68, perVisit:20, mo:4},
+            twice:{label:"Twice a Week", prepay:120, perVisit:18, mo:8},
+            eow:{label:"Every Other Week", prepay:40, perVisit:23, mo:2},
+            onetime:{label:"One-Time", prepay:95, perVisit:95, mo:1}
           };
-          var perDog = { weekly:20, twice:40, eow:10, onetime:10 };
+          var extraDogRate = { prepay:5, perVisit:6 }; // per visit; onetime uses flat rate below
+          var onetimeExtraDog = 10;
           var yardFeePerVisit = 10;
           var extraPrices = {
             deodorize:{label:"Yard deodorizing", amt:15},
             patio:{label:"Patio & deck hosing", amt:12},
-            kennel:{label:"Kennel / run cleanup", amt:8}
+            offsite:{label:"Off-site removal", amt:5}
           };
 
           function fmt(n){ return "$" + n; }
@@ -866,7 +905,7 @@
               gtag('event', 'quote_step_viewed', { step: n });
               if(n === TOTAL_STEPS){ gtag('event', 'quote_price_viewed'); }
             }
-            if(n === TOTAL_STEPS){ computeQuote(); }
+            if(n === TOTAL_STEPS){ setupBillingToggle(state.frequency); computeQuote(); }
             var qCard = document.querySelector('.quote-card');
             if(qCard){ qCard.scrollTop = 0; }
             var qSection = document.getElementById('quote');
@@ -914,41 +953,73 @@
           document.getElementById('quote-next').addEventListener('click', goNext);
           document.getElementById('quote-back').addEventListener('click', goBack);
 
+          var billingToggleWrap = document.getElementById('quote-billing-toggle');
+          if(billingToggleWrap){
+            billingToggleWrap.querySelectorAll('.quote-billing-btn').forEach(function(btn){
+              btn.addEventListener('click', function(){
+                billingToggleWrap.querySelectorAll('.quote-billing-btn').forEach(function(b){ b.classList.remove('active'); });
+                btn.classList.add('active');
+                state.billing = btn.dataset.value;
+                computeQuote();
+                if(typeof gtag === 'function'){ gtag('event', 'billing_toggle', { mode: state.billing }); }
+              });
+            });
+          }
+
           function computeQuote(){
             var freq = state.frequency || 'weekly';
+            var billing = state.billing || 'prepay';
             var dogs = parseInt(state.dogs || '1');
             var plan = basePrices[freq];
             var lines = [];
             var total = 0;
             var visits = plan.mo;
             var recurring = isRecurring(freq);
+            var monthlyBilling = recurring && billing === 'prepay'; // true only for prepaid recurring plans
 
-            var base = plan.base;
-            lines.push({ label: plan.label + " service (1 dog)", amt: base });
+            var base, baseLabel, unit;
+            if(freq === 'onetime'){
+              base = plan.prepay;
+              baseLabel = plan.label + " cleaning (1 dog)";
+              unit = '';
+            } else if(monthlyBilling){
+              base = plan.prepay;
+              baseLabel = plan.label + " service (1 dog), billed monthly";
+              unit = '/mo';
+            } else {
+              base = plan.perVisit;
+              baseLabel = plan.label + " service (1 dog), billed per visit";
+              unit = '/visit';
+            }
+            lines.push({ label: baseLabel, amt: base });
             total += base;
 
             if(dogs > 1){
-              var extra = (dogs - 1) * perDog[freq];
-              lines.push({ label: (dogs-1) + " additional dog" + (dogs-1>1?"s":""), amt: extra });
+              var extraCount = dogs - 1;
+              var rate;
+              if(freq === 'onetime'){ rate = onetimeExtraDog; }
+              else if(monthlyBilling){ rate = extraDogRate.prepay * visits; }
+              else { rate = extraDogRate.perVisit; }
+              var extra = extraCount * rate;
+              lines.push({ label: extraCount + " additional dog" + (extraCount>1?"s":""), amt: extra });
               total += extra;
             }
 
             if(state.yard === 'large'){
-              var yf = yardFeePerVisit * visits;
-              lines.push({ label: "Large / wooded yard" + (recurring ? " (" + visits + " visits)" : ""), amt: yf });
+              var yf = monthlyBilling ? yardFeePerVisit * visits : yardFeePerVisit;
+              lines.push({ label: "Large / wooded yard" + (monthlyBilling ? " (" + visits + " visits)" : ""), amt: yf });
               total += yf;
             }
 
             state.extras.forEach(function(e){
               var ex = extraPrices[e];
               if(!ex) return;
-              var amt = recurring ? ex.amt * visits : ex.amt;
-              var freqNote = recurring ? " (every visit)" : "";
+              var amt = monthlyBilling ? ex.amt * visits : ex.amt;
+              var freqNote = monthlyBilling ? " (every visit)" : (recurring ? " (charged each visit)" : "");
               lines.push({ label: ex.label + freqNote, amt: amt });
               total += amt;
             });
 
-            var unit = (freq === 'onetime') ? '' : '/mo';
             var html = '';
             lines.forEach(function(l){
               html += '<div class="line"><span>' + l.label + '</span><span>' + fmt(l.amt) + unit + '</span></div>';
@@ -959,7 +1030,8 @@
             var lotHint = document.getElementById('lot-size-hint');
             if(lotHint){ lotHint.style.display = (state.yard === 'large') ? '' : 'none'; }
 
-            var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + "total " + fmt(total) + unit;
+            var billingLabel = (freq === 'onetime') ? '' : (billing === 'perVisit' ? 'Pay-per-visit, ' : 'Prepay monthly, ');
+            var summary = billingLabel + plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + "total " + fmt(total) + unit;
             document.getElementById('q-summary').value = summary;
             document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
             window.lastQuoteTotal = total;
@@ -995,6 +1067,7 @@
               if(typeof gtag === 'function'){ gtag('event', 'quote_started'); }
             }
             state.frequency = planKey;
+            state.billing = null;
             var freqGroup = document.querySelector('.quote-options[data-group="frequency"]');
             if(freqGroup){
               freqGroup.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
@@ -1080,7 +1153,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </summary>
         <div class="faq-answer">
-          <p>You're billed monthly, in advance — we send an invoice for the upcoming month before your next round of visits begins.</p>
+          <p>You choose: prepay for the month and lock in our lowest rate (we send an invoice before your next round of visits begins), or pay per visit with no monthly commitment — you're only charged after each cleaning, so a skipped visit is simply a visit you're not billed for.</p>
         </div>
       </details>
 
