@@ -678,12 +678,9 @@
           <span class="p-dot done" data-dot="1"></span>
           <span class="p-dot" data-dot="2"></span>
           <span class="p-dot" data-dot="3"></span>
-          <span class="p-dot" data-dot="4"></span>
-          <span class="p-dot" data-dot="5"></span>
-          <span class="p-dot" data-dot="6"></span>
         </div>
 
-        <!-- STEP 1: frequency -->
+        <!-- STEP 1: frequency + dogs -->
         <div class="quote-step active" data-step="1">
           <div class="quote-question">How often would you like service?</div>
           <div class="quote-options single-col" data-group="frequency">
@@ -692,11 +689,7 @@
             <button type="button" class="quote-opt" data-value="eow">Every Other Week</button>
             <button type="button" class="quote-opt" data-value="onetime">One-Time</button>
           </div>
-        </div>
-
-        <!-- STEP 2: dogs -->
-        <div class="quote-step" data-step="2">
-          <div class="quote-question">How many dogs do you have?</div>
+          <div class="quote-question" style="margin-top:26px;">How many dogs do you have?</div>
           <div class="quote-options" data-group="dogs">
             <button type="button" class="quote-opt" data-value="1">1 dog</button>
             <button type="button" class="quote-opt" data-value="2">2 dogs</button>
@@ -705,54 +698,23 @@
           </div>
         </div>
 
-        <!-- STEP 3: yard -->
-        <div class="quote-step" data-step="3">
+        <!-- STEP 2: yard + extras -->
+        <div class="quote-step" data-step="2">
           <div class="quote-question">How's your yard?</div>
           <div class="quote-options single-col" data-group="yard">
             <button type="button" class="quote-opt" data-value="standard">Standard size <span class="sub">1/2 acre or less</span></button>
             <button type="button" class="quote-opt" data-value="large">Large or wooded <span class="sub">+$10/visit — confirmed on arrival</span></button>
           </div>
-        </div>
-
-        <!-- STEP 4: extras -->
-        <div class="quote-step" data-step="4">
-          <div class="quote-question">Want any extras?</div>
+          <div class="quote-question" style="margin-top:26px;">Want any extras? <span class="sub" style="font-family:'Inter';font-weight:400;">(optional)</span></div>
           <div class="quote-options single-col" data-group="extras" data-multi="true">
             <button type="button" class="quote-opt" data-value="deodorize">Yard deodorizing <span class="sub">$15/cleaning</span></button>
             <button type="button" class="quote-opt" data-value="patio">Patio & deck hosing <span class="sub">$12/cleaning</span></button>
             <button type="button" class="quote-opt" data-value="kennel">Kennel / run cleanup <span class="sub">$8/cleaning</span></button>
-            <button type="button" class="quote-opt" data-value="none">None</button>
-          </div>
-          <div id="extras-frequency-block" style="display:none;margin-top:22px;">
-            <div class="quote-question" style="font-size:16px;margin-bottom:10px;">How often should we apply these?</div>
-            <div class="quote-options single-col" data-group="extrasFrequency">
-              <button type="button" class="quote-opt selected" data-value="every">Every visit</button>
-              <button type="button" class="quote-opt" data-value="monthly">Once a month</button>
-            </div>
           </div>
         </div>
 
-        <!-- STEP 5: preferred day & time -->
-        <div class="quote-step" data-step="5">
-          <div class="quote-question">Any day or time preference?</div>
-          <div class="quote-options" data-group="day">
-            <button type="button" class="quote-opt" data-value="Monday">Monday</button>
-            <button type="button" class="quote-opt" data-value="Wednesday">Wednesday</button>
-            <button type="button" class="quote-opt" data-value="Friday">Friday</button>
-            <button type="button" class="quote-opt" data-value="No preference">No preference</button>
-          </div>
-          <div style="margin-top:22px;">
-            <div class="quote-question" style="font-size:16px;margin-bottom:10px;">Morning or afternoon?</div>
-            <div class="quote-options" data-group="timeRange">
-              <button type="button" class="quote-opt" data-value="Morning">Morning</button>
-              <button type="button" class="quote-opt" data-value="Afternoon">Afternoon</button>
-              <button type="button" class="quote-opt" data-value="No preference">No preference</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 6: result + booking -->
-        <div class="quote-step" data-step="6">
+        <!-- STEP 3: result + booking -->
+        <div class="quote-step" data-step="3">
           <div class="quote-result">
             <h3>Here's your price</h3>
             <div class="quote-breakdown" id="quote-breakdown"></div>
@@ -783,8 +745,6 @@
                 <textarea id="q-notes" name="notes" rows="2" placeholder="Gate code, best time to reach you, or anything else we should know"></textarea>
               </div>
               <input type="hidden" name="quote_summary" id="q-summary">
-              <input type="hidden" name="preferred_day" id="q-preferred-day">
-              <input type="hidden" name="preferred_time" id="q-preferred-time">
               <button type="submit" class="btn btn-solid book-btn" data-fs-submit-btn id="book-btn">Book at $—/mo →</button>
               <p class="book-note">No payment due now — we'll reach out to schedule your first visit.</p>
             </form>
@@ -861,8 +821,9 @@
 
       <script>
         (function(){
-          var state = { dogs:null, frequency:null, yard:null, extras:[], extrasFrequency:'every', day:null, timeRange:null };
+          var state = { dogs:null, frequency:null, yard:null, extras:[] };
           var current = 1;
+          var TOTAL_STEPS = 3;
 
           var basePrices = {
             weekly:{label:"Weekly", base:68, mo:4},
@@ -884,12 +845,6 @@
             return freq === 'weekly' || freq === 'twice' || freq === 'eow';
           }
 
-          function updateExtrasFrequencyVisibility(){
-            var block = document.getElementById('extras-frequency-block');
-            if(!block) return;
-            block.style.display = (state.extras.length > 0 && isRecurring(state.frequency)) ? '' : 'none';
-          }
-
           function updateDots(){
             document.querySelectorAll('.p-dot').forEach(function(d){
               d.classList.toggle('done', parseInt(d.dataset.dot) <= current);
@@ -904,15 +859,14 @@
             });
             document.getElementById('quote-back').disabled = (n === 1);
             var nextBtn = document.getElementById('quote-next');
-            if(n === 6){ nextBtn.style.display = 'none'; }
+            if(n === TOTAL_STEPS){ nextBtn.style.display = 'none'; }
             else { nextBtn.style.display = 'inline-flex'; validateNext(n); }
             updateDots();
-            if(n === 4){ updateExtrasFrequencyVisibility(); }
             if(typeof gtag === 'function'){
               gtag('event', 'quote_step_viewed', { step: n });
-              if(n === 6){ gtag('event', 'quote_price_viewed'); }
+              if(n === TOTAL_STEPS){ gtag('event', 'quote_price_viewed'); }
             }
-            if(n === 6){ computeQuote(); }
+            if(n === TOTAL_STEPS){ computeQuote(); }
             var qCard = document.querySelector('.quote-card');
             if(qCard){ qCard.scrollTop = 0; }
             var qSection = document.getElementById('quote');
@@ -922,11 +876,8 @@
           function validateNext(n){
             var nextBtn = document.getElementById('quote-next');
             var ok = false;
-            if(n===1) ok = !!state.frequency;
-            if(n===2) ok = !!state.dogs;
-            if(n===3) ok = !!state.yard;
-            if(n===4) ok = true;
-            if(n===5) ok = !!state.day && !!state.timeRange;
+            if(n===1) ok = !!state.frequency && !!state.dogs;
+            if(n===2) ok = !!state.yard;
             nextBtn.classList.toggle('enabled', ok);
           }
 
@@ -941,37 +892,21 @@
                   if(typeof gtag === 'function'){ gtag('event', 'quote_started'); }
                 }
                 if(multi){
-                  if(val === 'none'){
-                    state.extras = [];
-                    group.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
-                    btn.classList.add('selected');
-                  } else {
-                    var noneBtn = group.querySelector('[data-value="none"]');
-                    if(noneBtn) noneBtn.classList.remove('selected');
-                    var idx = state.extras.indexOf(val);
-                    if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); }
-                    else { state.extras.push(val); btn.classList.add('selected'); }
-                  }
-                  if(typeof gtag === 'function'){
-                    gtag('event', 'quote_option_selected', { question: key, value: val });
-                  }
-                  updateExtrasFrequencyVisibility();
+                  var idx = state.extras.indexOf(val);
+                  if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); }
+                  else { state.extras.push(val); btn.classList.add('selected'); }
                 } else {
                   group.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
                   btn.classList.add('selected');
                   state[key] = val;
-                  if(typeof gtag === 'function'){
-                    gtag('event', 'quote_option_selected', { question: key, value: val });
-                  }
-                  validateNext(current);
-                  setTimeout(function(){ if(current < 4){ goNext(); } }, 220);
                 }
+                validateNext(current);
               });
             });
           });
 
           function goNext(){
-            if(current < 6){ current++; showStep(current); }
+            if(current < TOTAL_STEPS){ current++; showStep(current); }
           }
           function goBack(){
             if(current > 1){ current--; showStep(current); }
@@ -1004,12 +939,11 @@
               total += yf;
             }
 
-            var extrasEveryVisit = recurring && state.extrasFrequency === 'every';
             state.extras.forEach(function(e){
               var ex = extraPrices[e];
               if(!ex) return;
-              var amt = extrasEveryVisit ? ex.amt * visits : ex.amt;
-              var freqNote = recurring ? (extrasEveryVisit ? " (every visit)" : " (monthly)") : "";
+              var amt = recurring ? ex.amt * visits : ex.amt;
+              var freqNote = recurring ? " (every visit)" : "";
               lines.push({ label: ex.label + freqNote, amt: amt });
               total += amt;
             });
@@ -1025,12 +959,7 @@
             var lotHint = document.getElementById('lot-size-hint');
             if(lotHint){ lotHint.style.display = (state.yard === 'large') ? '' : 'none'; }
 
-            var dayLabel = state.day || 'No preference';
-            var timeLabel = state.timeRange || 'No preference';
-            document.getElementById('q-preferred-day').value = dayLabel;
-            document.getElementById('q-preferred-time').value = timeLabel;
-
-            var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + " (" + state.extrasFrequency + "), " : "none, ") + "preferred day: " + dayLabel + ", preferred time: " + timeLabel + ", total " + fmt(total) + unit;
+            var summary = plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + "total " + fmt(total) + unit;
             document.getElementById('q-summary').value = summary;
             document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
             window.lastQuoteTotal = total;
@@ -1072,8 +1001,8 @@
               var match = freqGroup.querySelector('[data-value="' + planKey + '"]');
               if(match) match.classList.add('selected');
             }
-            current = 2;
-            showStep(2);
+            current = 1;
+            showStep(1);
             if(typeof gtag === 'function'){ gtag('event', 'plan_selected_from_pricing', { plan: planKey }); }
             openQuoteModal();
           }
