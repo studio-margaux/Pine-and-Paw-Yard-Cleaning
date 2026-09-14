@@ -84,6 +84,10 @@
     --ink:#28241E;
     --line:#E4DCC8;
     --white:#FFFFFF;
+    --promo-blue:#2E5A73;
+    --promo-blue-deep:#234A5F;
+    --promo-blue-mid:#3B7291;
+    --promo-blue-light:#5C93AC;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -94,6 +98,26 @@
   img,svg{display:block;max-width:100%;}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
   :focus-visible{outline:3px solid var(--honey);outline-offset:3px;}
+
+  /* ---------- PROMO BANNER ---------- */
+  .promo-banner{
+    background:linear-gradient(120deg, var(--promo-blue-deep), var(--promo-blue-mid), var(--promo-blue), var(--promo-blue-light), var(--promo-blue-deep));
+    background-size:300% 300%;
+    animation:promoGradientMove 14s ease-in-out infinite;
+    color:var(--paper);text-align:center;padding:16px 20px;position:relative;z-index:40;
+  }
+  @keyframes promoGradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+  .promo-banner a{text-decoration:none;color:inherit;display:block;transition:filter .15s;}
+  .promo-banner a:hover{filter:brightness(1.08);}
+  .promo-banner-text{font-family:'Inter';font-size:17px;letter-spacing:0.01em;line-height:1.4;}
+  .promo-banner-line1{display:block;font-weight:700;font-size:1.3em;margin-bottom:2px;}
+  .promo-banner-line2{display:block;font-weight:400;}
+  @media(max-width:480px){.promo-banner-text{font-size:15px;}}
+  @media(prefers-reduced-motion:reduce){.promo-banner{animation:none;}}
 
   /* ---------- HEADER / LOGO LOCKUP ---------- */
   header{position:sticky;top:0;z-index:50;background:rgba(246,242,232,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
@@ -446,24 +470,16 @@
   });
 </script>
 
-<main id="top">
+<div class="promo-banner">
+  <a href="#quote">
+    <span class="promo-banner-text">
+      <span class="promo-banner-line1">First cleaning free</span>
+      <span class="promo-banner-line2">with any monthly pre-pay plan</span>
+    </span>
+  </a>
+</div>
 
-  <!-- HERO PHOTO — now leads the page -->
-  <section class="photo-section photo-hero">
-    <div class="photo-inner">
-      <video
-        src="pine-paw-hero.mp4"
-        poster="pine-paw-hero.jpg"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-        aria-label="A golden retriever enjoying a freshly cleaned St. Paul backyard while its owner relaxes on the porch">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
+<main id="top">
 
   <!-- HERO TEXT -->
   <section class="hero">
@@ -471,7 +487,7 @@
     <div class="wrap hero-inner">
       <span class="hero-tagline">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Clean yards for happy paws.</h1>
-      <p class="lead">We take dog waste removal and yard sanitation off your plate — locally owned, no contracts, and yes, we still show up when it's snowing.</p>
+      <p class="lead">We do the dirty work, so you don't have to. Locally owned, no contracts, year-round service.</p>
       <div class="hero-price-block">
         <p class="hero-price-note">Plans start at $40/mo.</p>
         <a href="#quote" class="btn btn-honey hero-price-cta">Get my price</a>
@@ -622,7 +638,6 @@
         <span class="addons-inline-label">Add-ons</span>
         <div class="addons">
           <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that knocks out the odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15/cleaning</p></div>
-          <div class="addon"><h4>Patio & deck hosing</h4><p>We'll hose down your patio or deck after cleanup — great if you've got a smaller urban lot.</p><p class="addon-price">+$12/cleaning</p></div>
           <div class="addon"><h4>Off-site removal</h4><p>We'll haul the waste away with us instead of leaving it in your bin — done.</p><p class="addon-price">+$5/cleaning</p></div>
         </div>
       </div>
@@ -657,7 +672,7 @@
         </div>
         <div class="expect-item">
           <span class="expect-num">04</span>
-          <p><strong>Yard & add-ons.</strong> We clear the yard of pet waste, and take care of any add-on services you've requested, like deodorizing or patio cleanup.</p>
+          <p><strong>Yard & add-ons.</strong> We clear the yard of pet waste, and take care of any add-on services you've requested, like deodorizing or off-site removal.</p>
         </div>
         <div class="expect-item">
           <span class="expect-num">05</span>
@@ -724,7 +739,6 @@
           <div class="quote-question" style="margin-top:26px;">Want any extras? <span class="sub" style="font-family:'Inter';font-weight:400;">(optional)</span></div>
           <div class="quote-options single-col" data-group="extras" data-multi="true">
             <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="deodorize"><span class="check-box" aria-hidden="true"></span><span class="check-label">Yard deodorizing <span class="sub">$15/cleaning</span></span></button>
-            <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="patio"><span class="check-box" aria-hidden="true"></span><span class="check-label">Patio & deck hosing <span class="sub">$12/cleaning</span></span></button>
             <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="offsite"><span class="check-box" aria-hidden="true"></span><span class="check-label">Off-site removal <span class="sub">$5/cleaning</span></span></button>
           </div>
         </div>
@@ -887,7 +901,6 @@
           var yardFeePerVisit = 10;
           var extraPrices = {
             deodorize:{label:"Yard deodorizing", amt:15},
-            patio:{label:"Patio & deck hosing", amt:12},
             offsite:{label:"Off-site removal", amt:5}
           };
 
@@ -1258,7 +1271,7 @@
         </div>
         <span class="eyebrow">About Us</span>
         <h2>Welcome, neighbor!</h2>
-        <p>We started Pine &amp; Paw Yard Cleaning to do something simple and useful for our neighbors — showing up, doing the work well, and making life a little easier.</p>
+        <p>We started Pine &amp; Paw Yard Cleaning to do something simple and useful for our neighbors. We show up, do the work well, and make life a little easier. 💚</p>
         <p class="about-sign">Maggie</p>
       </div>
     </div>
