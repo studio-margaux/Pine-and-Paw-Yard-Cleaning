@@ -323,6 +323,7 @@
   .quote-breakdown{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:22px;font-family:'IBM Plex Mono';font-size:14px;}
   .quote-breakdown .line{display:flex;justify-content:space-between;padding:5px 0;color:#4a4436;}
   .quote-breakdown .total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px solid var(--line);font-weight:600;color:var(--pine-deep);font-size:16px;}
+  .savings-line{text-align:right;font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-top:6px;}
   .quote-billing-toggle{margin-bottom:18px;}
   .quote-save-note{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-bottom:10px;}
   .quote-billing-switch{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px;}
@@ -896,6 +897,18 @@
             return freq === 'weekly' || freq === 'twice' || freq === 'eow';
           }
 
+          function computePerVisitTotal(freq, dogs, yard, extras){
+            var plan = basePrices[freq];
+            var total = plan.perVisit;
+            if(dogs > 1){ total += (dogs - 1) * extraDogRate.perVisit; }
+            if(yard === 'large'){ total += yardFeePerVisit; }
+            extras.forEach(function(e){
+              var ex = extraPrices[e];
+              if(ex){ total += ex.amt; }
+            });
+            return total;
+          }
+
           function updateDots(){
             document.querySelectorAll('.p-dot').forEach(function(d){
               d.classList.toggle('done', parseInt(d.dataset.dot) <= current);
@@ -1037,6 +1050,13 @@
               html += '<div class="line"><span>' + l.label + '</span><span>' + fmt(l.amt) + unit + '</span></div>';
             });
             html += '<div class="total"><span>Your price</span><span>' + fmt(total) + unit + '</span></div>';
+            if(monthlyBilling){
+              var perVisitEquivalent = computePerVisitTotal(freq, dogs, state.yard, state.extras) * visits;
+              var savings = perVisitEquivalent - total;
+              if(savings > 0){
+                html += '<div class="savings-line">You saved ' + fmt(savings) + '/mo by prepaying</div>';
+              }
+            }
             document.getElementById('quote-breakdown').innerHTML = html;
 
             var lotHint = document.getElementById('lot-size-hint');
@@ -1238,7 +1258,7 @@
         </div>
         <span class="eyebrow">About Us</span>
         <h2>Welcome, neighbor!</h2>
-        <p>We started Pine &amp; Paw Yard Cleaning to do something simple and useful for our neighbors. We show up, do the work well, and make life a little easier. 💚</p>
+        <p>We started Pine &amp; Paw Yard Cleaning to do something simple and useful for our neighbors — showing up, doing the work well, and making life a little easier.</p>
         <p class="about-sign">Maggie</p>
       </div>
     </div>
