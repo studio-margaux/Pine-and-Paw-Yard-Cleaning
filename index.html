@@ -307,6 +307,12 @@
   .quote-opt.selected{border-color:var(--pine);background:#EEF2EA;}
   .quote-opt .sub{display:block;font-size:12px;color:#7d735d;font-weight:400;margin-top:2px;}
   .quote-opt .badge{display:inline-block;font-family:'IBM Plex Mono';font-size:10px;color:var(--honey-deep);text-transform:uppercase;letter-spacing:0.04em;margin-left:6px;}
+  .quote-opt-check{display:flex;align-items:flex-start;gap:12px;}
+  .quote-opt-check .check-box{width:20px;height:20px;margin-top:1px;flex-shrink:0;border:2px solid var(--line);border-radius:6px;background:var(--white);position:relative;transition:all .15s;}
+  .quote-opt-check .check-box::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border-right:2px solid var(--paper);border-bottom:2px solid var(--paper);transform:rotate(45deg);opacity:0;transition:opacity .1s;}
+  .quote-opt-check.selected .check-box{background:var(--pine);border-color:var(--pine);}
+  .quote-opt-check.selected .check-box::after{opacity:1;}
+  .quote-opt-check .check-label{flex:1;}
   .quote-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
   .quote-back{background:none;border:none;color:#7d735d;font-family:'Inter';font-size:14px;cursor:pointer;padding:8px;}
   .quote-back:disabled{visibility:hidden;}
@@ -716,9 +722,9 @@
           </div>
           <div class="quote-question" style="margin-top:26px;">Want any extras? <span class="sub" style="font-family:'Inter';font-weight:400;">(optional)</span></div>
           <div class="quote-options single-col" data-group="extras" data-multi="true">
-            <button type="button" class="quote-opt" data-value="deodorize">Yard deodorizing <span class="sub">$15/cleaning</span></button>
-            <button type="button" class="quote-opt" data-value="patio">Patio & deck hosing <span class="sub">$12/cleaning</span></button>
-            <button type="button" class="quote-opt" data-value="offsite">Off-site removal <span class="sub">$5/cleaning</span></button>
+            <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="deodorize"><span class="check-box" aria-hidden="true"></span><span class="check-label">Yard deodorizing <span class="sub">$15/cleaning</span></span></button>
+            <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="patio"><span class="check-box" aria-hidden="true"></span><span class="check-label">Patio & deck hosing <span class="sub">$12/cleaning</span></span></button>
+            <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="offsite"><span class="check-box" aria-hidden="true"></span><span class="check-label">Off-site removal <span class="sub">$5/cleaning</span></span></button>
           </div>
         </div>
 
@@ -760,6 +766,12 @@
                 <p class="field-hint" id="lot-size-hint" style="display:none;">Large/wooded yard selected — note your approximate lot size below; final pricing confirmed on arrival.</p>
                 <textarea id="q-notes" name="notes" rows="2" placeholder="Gate code, best time to reach you, or anything else we should know"></textarea>
               </div>
+              <input type="hidden" name="quote_plan" id="q-plan">
+              <input type="hidden" name="quote_billing" id="q-billing">
+              <input type="hidden" name="quote_dogs" id="q-dogs">
+              <input type="hidden" name="quote_yard" id="q-yard">
+              <input type="hidden" name="quote_extras" id="q-extras">
+              <input type="hidden" name="quote_total" id="q-total">
               <input type="hidden" name="quote_summary" id="q-summary">
               <button type="submit" class="btn btn-solid book-btn" data-fs-submit-btn id="book-btn">Book at $—/mo →</button>
               <p class="book-note">No payment due now — we'll reach out to schedule your first visit.</p>
@@ -932,8 +944,8 @@
                 }
                 if(multi){
                   var idx = state.extras.indexOf(val);
-                  if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); }
-                  else { state.extras.push(val); btn.classList.add('selected'); }
+                  if(idx > -1){ state.extras.splice(idx,1); btn.classList.remove('selected'); btn.setAttribute('aria-checked','false'); }
+                  else { state.extras.push(val); btn.classList.add('selected'); btn.setAttribute('aria-checked','true'); }
                 } else {
                   group.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.remove('selected'); });
                   btn.classList.add('selected');
@@ -1033,6 +1045,14 @@
             var billingLabel = (freq === 'onetime') ? '' : (billing === 'perVisit' ? 'Pay-per-visit, ' : 'Prepay monthly, ');
             var summary = billingLabel + plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + "total " + fmt(total) + unit;
             document.getElementById('q-summary').value = summary;
+
+            document.getElementById('q-plan').value = plan.label;
+            document.getElementById('q-billing').value = (freq === 'onetime') ? 'One-time' : (billing === 'perVisit' ? 'Pay per visit' : 'Prepay monthly');
+            document.getElementById('q-dogs').value = dogs;
+            document.getElementById('q-yard').value = (state.yard === 'large') ? 'Large/wooded' : 'Standard';
+            document.getElementById('q-extras').value = state.extras.length ? state.extras.map(function(e){ return extraPrices[e] ? extraPrices[e].label : e; }).join(', ') : 'None';
+            document.getElementById('q-total').value = fmt(total) + unit;
+
             document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
             window.lastQuoteTotal = total;
           }
