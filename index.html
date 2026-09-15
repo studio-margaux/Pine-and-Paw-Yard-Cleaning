@@ -161,13 +161,20 @@
   .expect-item p{font-size:15.5px;color:#3d3629;line-height:1.6;}
   .expect-item strong{color:var(--pine-deep);font-weight:600;}
 
-  .area-marquee{width:100%;background:var(--pine-deep);padding:20px 0;overflow:hidden;white-space:nowrap;}
-  .marquee-track{display:inline-flex;align-items:center;gap:18px;animation:marqueeScroll 32s linear infinite;}
+  .area-marquee{width:100%;background:var(--pine-deep);padding:24px 0;}
+  .marquee-track{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 32px;max-width:1000px;margin:0 auto;padding:0 20px;}
   .marquee-track span{font-family:'IBM Plex Mono';font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:var(--paper);white-space:nowrap;}
-  .marquee-track .dot{color:var(--honey);font-size:12px;}
+  .marquee-track .dot{display:none;}
+  .marquee-track-mobile{display:none;}
+  @media(max-width:640px){
+    .area-marquee{overflow:hidden;white-space:nowrap;padding:20px 0;}
+    .marquee-track-desktop{display:none;}
+    .marquee-track-mobile{display:inline-flex;align-items:center;gap:18px;animation:marqueeScroll 32s linear infinite;}
+    .marquee-track-mobile span{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--paper);white-space:nowrap;}
+    .marquee-track-mobile .dot{display:inline;color:var(--honey);font-size:12px;}
+  }
   @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
-  @media(max-width:640px){.marquee-track span{font-size:12px;}}
+  @media(prefers-reduced-motion:reduce){.marquee-track-mobile{animation:none;}}
 
   /* ---------- BEFORE / AFTER ---------- */
   .ba-grid{display:flex;flex-direction:column;gap:28px;}
@@ -182,14 +189,20 @@
   /* ---------- DOG PHOTO WALL ---------- */
   .dog-marquee-section{width:100%;background:var(--pine-deep);padding:32px 0 6px;}
   .dog-marquee-title{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:17px;color:var(--honey);text-align:center;margin-bottom:6px;}
-  .dog-marquee{width:100%;overflow:hidden;}
-  .dog-marquee-track{display:inline-flex;align-items:center;gap:20px;animation:dogMarqueeScroll 40s linear infinite;padding:0 10px;}
-  .dog-marquee:hover .dog-marquee-track{animation-play-state:paused;}
+  .dog-marquee{width:100%;}
+  .dog-marquee-track{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px;max-width:1100px;margin:0 auto;padding:10px 20px;}
   .dog-photo{flex-shrink:0;width:190px;height:230px;border-radius:6px;overflow:hidden;background:var(--paper);padding:8px 8px 24px;box-shadow:0 10px 24px -10px rgba(0,0,0,0.5);transform:rotate(var(--tilt,0deg));}
   .dog-photo img{width:100%;height:100%;object-fit:cover;border-radius:2px;}
+  .dog-marquee-mobile{display:none;}
+  @media(max-width:640px){
+    .dog-photo{width:150px;height:186px;padding:6px 6px 18px;}
+    .dog-marquee-desktop{display:none;}
+    .dog-marquee-mobile{display:block;overflow:hidden;}
+    .dog-marquee-track-mobile{display:inline-flex;align-items:center;gap:20px;animation:dogMarqueeScroll 40s linear infinite;padding:0 10px;}
+    .dog-marquee-mobile:hover .dog-marquee-track-mobile{animation-play-state:paused;}
+  }
   @keyframes dogMarqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @media(prefers-reduced-motion:reduce){.dog-marquee-track{animation:none;}}
-  @media(max-width:640px){.dog-photo{width:150px;height:186px;padding:6px 6px 18px;}}
+  @media(prefers-reduced-motion:reduce){.dog-marquee-track-mobile{animation:none;}}
 
   /* ---------- ABOUT ---------- */
   .about-section{background:var(--pine-deep);}
@@ -402,7 +415,10 @@
   }
 
   /* ---------- FOOTER ---------- */
-  footer{background:var(--pine-deep);color:#c9d2c3;padding:48px 0 28px;margin-top:20px;}
+  footer{background:var(--pine-deep);color:#c9d2c3;padding:48px 0 28px;}
+  .footer-wave{width:100%;line-height:0;background:var(--pine-deep);margin-top:-1px;padding:14px 0;}
+  .footer-wave svg{display:block;width:100%;height:20px;}
+  .footer-wave path{fill:none;stroke:var(--honey);stroke-width:3;stroke-linecap:round;}
   .footer-grid{display:grid;gap:28px;margin-bottom:32px;}
   @media(min-width:760px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr;}}
   footer h4{color:var(--paper);font-size:13px;text-transform:uppercase;letter-spacing:0.06em;font-family:'IBM Plex Mono';margin-bottom:12px;}
@@ -498,7 +514,17 @@
 
   <!-- LARGE LOGO LOCKUP — color block -->
   <section class="area-marquee" aria-hidden="true">
-    <div class="marquee-track">
+    <div class="marquee-track marquee-track-desktop">
+      <span>North End</span><span class="dot">·</span>
+      <span>Como</span><span class="dot">·</span>
+      <span>Highland Park</span><span class="dot">·</span>
+      <span>Mac-Groveland</span><span class="dot">·</span>
+      <span>Summit Hill</span><span class="dot">·</span>
+      <span>Frogtown</span><span class="dot">·</span>
+      <span>Payne-Phalen</span><span class="dot">·</span>
+      <span>Summit-University</span>
+    </div>
+    <div class="marquee-track-mobile">
       <span>North End</span><span class="dot">·</span>
       <span>Como</span><span class="dot">·</span>
       <span>Highland Park</span><span class="dot">·</span>
@@ -568,8 +594,17 @@
   <!-- DOG PHOTO WALL -->
   <section class="dog-marquee-section">
     <p class="dog-marquee-title">Pups we serve 🐾</p>
-    <div class="dog-marquee" aria-hidden="true">
+    <div class="dog-marquee dog-marquee-desktop" aria-hidden="true">
     <div class="dog-marquee-track">
+      <div class="dog-photo" style="--tilt:-3deg;"><img src="pine-paw-frenchie.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:2deg;"><img src="pine-paw-gsd-snow.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:-2deg;"><img src="pine-paw-poodle-mix.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:3deg;"><img src="pine-paw-greyhounds.jpg" alt=""></div>
+      <div class="dog-photo" style="--tilt:-1deg;"><img src="pine-paw-great-dane.jpg" alt=""></div>
+    </div>
+    </div>
+    <div class="dog-marquee dog-marquee-mobile" aria-hidden="true">
+    <div class="dog-marquee-track-mobile">
       <div class="dog-photo" style="--tilt:-3deg;"><img src="pine-paw-frenchie.jpg" alt=""></div>
       <div class="dog-photo" style="--tilt:2deg;"><img src="pine-paw-gsd-snow.jpg" alt=""></div>
       <div class="dog-photo" style="--tilt:-2deg;"><img src="pine-paw-poodle-mix.jpg" alt=""></div>
@@ -1282,6 +1317,12 @@
   </section>
 
 </main>
+
+<div class="footer-wave" aria-hidden="true">
+  <svg viewBox="0 0 1200 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,10 C50,0 100,20 150,10 C200,0 250,20 300,10 C350,0 400,20 450,10 C500,0 550,20 600,10 C650,0 700,20 750,10 C800,0 850,20 900,10 C950,0 1000,20 1050,10 C1100,0 1150,20 1200,10"></path>
+  </svg>
+</div>
 
 <footer>
   <div class="wrap">
