@@ -84,10 +84,10 @@
     --ink:#28241E;
     --line:#E4DCC8;
     --white:#FFFFFF;
-    --promo-blue:#2E5A73;
-    --promo-blue-deep:#234A5F;
-    --promo-blue-mid:#3B7291;
-    --promo-blue-light:#5C93AC;
+    --promo-pine-deep:#16281F;
+    --promo-pine:#1F3B2F;
+    --promo-pine-mid:#2C4F3E;
+    --promo-sage:#4F6B58;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -101,7 +101,7 @@
 
   /* ---------- PROMO BANNER ---------- */
   .promo-banner{
-    background:linear-gradient(120deg, var(--promo-blue-deep), var(--promo-blue-mid), var(--promo-blue), var(--promo-blue-light), var(--promo-blue-deep));
+    background:linear-gradient(120deg, var(--promo-pine-deep), var(--promo-pine-mid), var(--promo-pine), var(--promo-sage), var(--promo-pine-deep));
     background-size:300% 300%;
     animation:promoGradientMove 14s ease-in-out infinite;
     color:var(--paper);text-align:center;padding:16px 20px;position:relative;z-index:40;
@@ -114,7 +114,7 @@
   .promo-banner a{text-decoration:none;color:inherit;display:block;transition:filter .15s;}
   .promo-banner a:hover{filter:brightness(1.08);}
   .promo-banner-text{font-family:'Inter';font-size:17px;letter-spacing:0.01em;line-height:1.4;}
-  .promo-banner-line1{display:block;font-weight:700;font-size:1.3em;margin-bottom:2px;}
+  .promo-banner-line1{display:block;font-weight:700;font-size:1.3em;margin-bottom:2px;color:var(--paper);}
   .promo-banner-line2{display:block;font-weight:400;}
   @media(max-width:480px){.promo-banner-text{font-size:15px;}}
   @media(prefers-reduced-motion:reduce){.promo-banner{animation:none;}}
@@ -349,10 +349,11 @@
   .quote-breakdown .total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px solid var(--line);font-weight:600;color:var(--pine-deep);font-size:16px;}
   .savings-line{text-align:right;font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-top:6px;}
   .quote-billing-toggle{margin-bottom:18px;}
-  .quote-save-note{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-bottom:10px;}
+  .quote-promo-note{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-bottom:14px;}
   .quote-billing-switch{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px;}
-  .quote-billing-btn{border:none;background:transparent;font-family:'IBM Plex Mono';font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:#7d735d;padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .15s;}
+  .quote-billing-btn{position:relative;border:none;background:transparent;font-family:'IBM Plex Mono';font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:#7d735d;padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .15s;}
   .quote-billing-btn.active{background:var(--pine-deep);color:var(--paper);}
+  .quote-save-chip{position:absolute;top:-10px;right:-8px;background:var(--honey);color:var(--pine-deep);font-family:'IBM Plex Mono';font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;padding:3px 7px;border-radius:999px;box-shadow:0 2px 5px rgba(22,40,31,0.25);white-space:nowrap;}
   .quote-contact .field{margin-bottom:16px;}
   .quote-contact label{display:block;font-size:13px;font-weight:600;color:var(--pine-deep);margin-bottom:6px;}
   .field-hint{font-size:12.5px;color:#7d735d;margin:-2px 0 8px;line-height:1.5;}
@@ -473,7 +474,7 @@
 <div class="promo-banner">
   <a href="#quote">
     <span class="promo-banner-text">
-      <span class="promo-banner-line1">First cleaning free</span>
+      <span class="promo-banner-line1">✨ FREE first cleaning ✨</span>
       <span class="promo-banner-line2">with any monthly pre-pay plan</span>
     </span>
   </a>
@@ -747,11 +748,11 @@
         <div class="quote-step" data-step="3">
           <div class="quote-result">
             <h3>Here's your price</h3>
+            <p class="quote-promo-note" id="quote-promo-note" style="display:none;">✨ First cleaning free with monthly pre-pay ✨</p>
             <div class="quote-billing-toggle" id="quote-billing-toggle" style="display:none;">
-              <p class="quote-save-note" id="quote-save-note">Save 15% when billed monthly</p>
               <div class="quote-billing-switch" role="group" aria-label="Choose how you'd like to be billed">
                 <button type="button" class="quote-billing-btn" data-value="perVisit">Pay Per Visit</button>
-                <button type="button" class="quote-billing-btn active" data-value="prepay">Billed Monthly</button>
+                <button type="button" class="quote-billing-btn active" data-value="prepay">Pre-Pay Monthly<span class="quote-save-chip" id="quote-save-note">Save 15%</span></button>
               </div>
             </div>
             <div class="quote-breakdown" id="quote-breakdown"></div>
@@ -869,18 +870,21 @@
           function setupBillingToggle(freq){
             var wrap = document.getElementById('quote-billing-toggle');
             var note = document.getElementById('quote-save-note');
+            var promoNote = document.getElementById('quote-promo-note');
             if(!wrap || !note) return;
             if(freq === 'onetime'){
               wrap.style.display = 'none';
+              if(promoNote){ promoNote.style.display = 'none'; }
               state.billing = null;
               return;
             }
             wrap.style.display = '';
+            if(promoNote){ promoNote.style.display = ''; }
             var plan = basePrices[freq];
             if(plan){
               var monthlyEquivAtPerVisit = plan.perVisit * plan.mo;
               var savePct = Math.round((1 - (plan.prepay / monthlyEquivAtPerVisit)) * 100);
-              note.textContent = "Save " + savePct + "% when billed monthly";
+              note.textContent = "Save " + savePct + "%";
             }
             if(!state.billing){ state.billing = 'prepay'; }
             wrap.querySelectorAll('.quote-billing-btn').forEach(function(b){
