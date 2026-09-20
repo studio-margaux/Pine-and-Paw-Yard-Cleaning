@@ -373,15 +373,15 @@
   .quote-breakdown{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:22px;font-family:'IBM Plex Mono';font-size:14px;}
   .quote-breakdown .line{display:flex;justify-content:space-between;padding:5px 0;color:#4a4436;}
   .quote-breakdown .total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px solid var(--line);font-weight:600;color:var(--pine-deep);font-size:16px;}
-  .savings-line{text-align:right;font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-top:6px;}
-  .quote-billing-toggle{margin-bottom:18px;}
-  .quote-promo-note{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--honey-deep);margin-bottom:14px;}
-  .quote-billing-switch{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px;}
-  .quote-billing-btn{position:relative;border:none;background:transparent;font-family:'IBM Plex Mono';font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:#7d735d;padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .15s;}
-  .quote-billing-btn.active{background:var(--pine-deep);color:var(--paper);}
-  .quote-save-chip{position:absolute;top:-10px;right:-8px;background:var(--honey);color:var(--pine-deep);font-family:'IBM Plex Mono';font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;padding:3px 7px;border-radius:999px;box-shadow:0 2px 5px rgba(22,40,31,0.25);white-space:nowrap;}
   .quote-contact .field{margin-bottom:16px;}
   .quote-contact label{display:block;font-size:13px;font-weight:600;color:var(--pine-deep);margin-bottom:6px;}
+  .community{background:var(--pine-deep);color:var(--paper);padding:64px 0;}
+  .community-inner{max-width:720px;text-align:center;}
+  .community h2{color:var(--paper);font-size:clamp(28px,4.2vw,40px);margin-bottom:16px;}
+  .community p{color:#DDD6C4;font-size:17px;max-width:52ch;margin:0 auto 24px;}
+  .community p.community-fine{font-size:13.5px;color:var(--sage);margin:14px auto 0;}
+  .quote-contact .check-label{display:flex;align-items:flex-start;gap:10px;font-weight:500;font-size:14.5px;cursor:pointer;margin-bottom:0;}
+  .quote-contact .check-label input{width:20px;height:20px;padding:0;margin:1px 0 0;flex-shrink:0;accent-color:var(--pine);}
   .field-hint{font-size:12.5px;color:#7d735d;margin:-2px 0 8px;line-height:1.5;}
   .quote-contact input,.quote-contact textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:'Inter';font-size:15px;background:var(--paper);color:var(--ink);}
   .quote-contact input:focus,.quote-contact textarea:focus{outline:3px solid var(--honey);outline-offset:0;border-color:var(--honey);}
@@ -500,8 +500,8 @@
 <div class="promo-banner">
   <a href="#quote">
     <span class="promo-banner-text">
-      <span class="promo-banner-line1">✨ FREE first cleaning ✨</span>
-      <span class="promo-banner-line2">with any monthly pre-pay plan</span>
+      <span class="promo-banner-line1">✨ Try us free ✨</span>
+      <span class="promo-banner-line2">Your first cleanup is on us. No commitment.</span>
     </span>
   </a>
 </div>
@@ -514,7 +514,7 @@
     <div class="wrap hero-inner">
       <span class="hero-tagline">St. Paul, MN & Twin Cities — year-round service</span>
       <h1>Clean yards for happy paws.</h1>
-      <p class="lead">We do the dirty work, so you don't have to. Locally owned, no contracts, year-round service.</p>
+      <p class="lead">We do the dirty work, so you don't have to. Locally owned, affordable, no contracts, year-round service.</p>
       <div class="hero-price-block">
         <p class="hero-price-note">Plans start at $40/mo.</p>
         <a href="#quote" class="btn btn-honey hero-price-cta">Get my price</a>
@@ -601,6 +601,16 @@
     </div>
   </section>
 
+  <!-- COMMUNITY DISCOUNT -->
+  <section class="community" id="community">
+    <div class="wrap community-inner">
+      <h2>Serving our community</h2>
+      <p>We're passionate about serving seniors, veterans, and service dog households in our community. Let us know when you book, and you'll get 15% off.</p>
+      <a href="#quote" class="btn btn-honey" data-claim-discount>Claim my 15% off</a>
+      <p class="community-fine">Just check the box when you get your price.</p>
+    </div>
+  </section>
+
   <!-- DOG PHOTO WALL -->
   <section class="dog-marquee-section">
     <p class="dog-marquee-title">Pups we serve 🐾</p>
@@ -639,7 +649,7 @@
             <span class="eyebrow">Pricing</span>
             <span class="accordion-title">Choose your frequency.</span>
           </span>
-          <p class="accordion-intro">Prices below are billed monthly. Prefer to pay per visit? That option's available when you get your price.</p>
+          <p class="accordion-intro">Prices below are billed monthly.</p>
         </div>
         <div class="accordion-body">
       <div class="price-table-wrap">
@@ -793,13 +803,6 @@
         <div class="quote-step" data-step="3">
           <div class="quote-result">
             <h3>Here's your price</h3>
-            <p class="quote-promo-note" id="quote-promo-note" style="display:none;">✨ First cleaning free with monthly pre-pay ✨</p>
-            <div class="quote-billing-toggle" id="quote-billing-toggle" style="display:none;">
-              <div class="quote-billing-switch" role="group" aria-label="Choose how you'd like to be billed">
-                <button type="button" class="quote-billing-btn" data-value="perVisit">Pay Per Visit</button>
-                <button type="button" class="quote-billing-btn active" data-value="prepay">Pre-Pay Monthly<span class="quote-save-chip" id="quote-save-note">Save 15%</span></button>
-              </div>
-            </div>
             <div class="quote-breakdown" id="quote-breakdown"></div>
 
             <form id="quote-form" class="quote-contact">
@@ -822,8 +825,10 @@
                 <input id="q-address" name="address" type="text" placeholder="e.g. Como, St. Paul" data-fs-field required>
               </div>
               <div class="field">
+                <label class="check-label"><input type="checkbox" id="q-discount" name="discount_15" value="Yes" data-fs-field><span>I'm a senior, veteran, or service dog household (15% off)</span></label>
+              </div>
+              <div class="field">
                 <label for="q-notes">Notes (optional)</label>
-                <p class="field-hint">Senior, veteran, or service dog household? Mention it below for 15% off.</p>
                 <p class="field-hint" id="lot-size-hint" style="display:none;">Large/wooded yard selected — note your approximate lot size below; final pricing confirmed on arrival.</p>
                 <textarea id="q-notes" name="notes" rows="2" placeholder="Gate code, best time to reach you, or anything else we should know"></textarea>
               </div>
@@ -912,30 +917,6 @@
         (function(){
           var state = { dogs:null, frequency:null, billing:null, yard:null, extras:[] };
 
-          function setupBillingToggle(freq){
-            var wrap = document.getElementById('quote-billing-toggle');
-            var note = document.getElementById('quote-save-note');
-            var promoNote = document.getElementById('quote-promo-note');
-            if(!wrap || !note) return;
-            if(freq === 'onetime'){
-              wrap.style.display = 'none';
-              if(promoNote){ promoNote.style.display = 'none'; }
-              state.billing = null;
-              return;
-            }
-            wrap.style.display = '';
-            if(promoNote){ promoNote.style.display = ''; }
-            var plan = basePrices[freq];
-            if(plan){
-              var monthlyEquivAtPerVisit = plan.perVisit * plan.mo;
-              var savePct = Math.round((1 - (plan.prepay / monthlyEquivAtPerVisit)) * 100);
-              note.textContent = "Save " + savePct + "%";
-            }
-            if(!state.billing){ state.billing = 'prepay'; }
-            wrap.querySelectorAll('.quote-billing-btn').forEach(function(b){
-              b.classList.toggle('active', b.dataset.value === state.billing);
-            });
-          }
           var current = 1;
           var TOTAL_STEPS = 3;
 
@@ -953,7 +934,7 @@
             offsite:{label:"Off-site removal", amt:5}
           };
 
-          function fmt(n){ return "$" + n; }
+          function fmt(n){ return "$" + (n % 1 ? n.toFixed(2) : n); }
 
           function isRecurring(freq){
             return freq === 'weekly' || freq === 'twice' || freq === 'eow';
@@ -992,7 +973,7 @@
               gtag('event', 'quote_step_viewed', { step: n });
               if(n === TOTAL_STEPS){ gtag('event', 'quote_price_viewed'); }
             }
-            if(n === TOTAL_STEPS){ setupBillingToggle(state.frequency); computeQuote(); }
+            if(n === TOTAL_STEPS){ computeQuote(); }
             var qCard = document.querySelector('.quote-card');
             if(qCard){ qCard.scrollTop = 0; }
             var qSection = document.getElementById('quote');
@@ -1040,22 +1021,18 @@
           document.getElementById('quote-next').addEventListener('click', goNext);
           document.getElementById('quote-back').addEventListener('click', goBack);
 
-          var billingToggleWrap = document.getElementById('quote-billing-toggle');
-          if(billingToggleWrap){
-            billingToggleWrap.querySelectorAll('.quote-billing-btn').forEach(function(btn){
-              btn.addEventListener('click', function(){
-                billingToggleWrap.querySelectorAll('.quote-billing-btn').forEach(function(b){ b.classList.remove('active'); });
-                btn.classList.add('active');
-                state.billing = btn.dataset.value;
-                computeQuote();
-                if(typeof gtag === 'function'){ gtag('event', 'billing_toggle', { mode: state.billing }); }
-              });
+
+          var discountBox = document.getElementById('q-discount');
+          if(discountBox){ discountBox.addEventListener('change', computeQuote); }
+          document.querySelectorAll('[data-claim-discount]').forEach(function(btn){
+            btn.addEventListener('click', function(){
+              if(discountBox){ discountBox.checked = true; computeQuote(); }
             });
-          }
+          });
 
           function computeQuote(){
             var freq = state.frequency || 'weekly';
-            var billing = state.billing || 'prepay';
+            var billing = 'prepay'; // monthly billing only
             var dogs = parseInt(state.dogs || '1');
             var plan = basePrices[freq];
             var lines = [];
@@ -1107,29 +1084,29 @@
               total += amt;
             });
 
+            var discountOn = document.getElementById('q-discount') && document.getElementById('q-discount').checked;
+            if(discountOn){
+              var discount = Math.round(total * 0.15 * 100) / 100;
+              lines.push({ label: "15% discount (senior, veteran, or service dog household)", amt: discount, neg: true });
+              total = Math.round((total - discount) * 100) / 100;
+            }
+
             var html = '';
             lines.forEach(function(l){
-              html += '<div class="line"><span>' + l.label + '</span><span>' + fmt(l.amt) + unit + '</span></div>';
+              html += '<div class="line"><span>' + l.label + '</span><span>' + (l.neg ? '\u2212' : '') + fmt(l.amt) + unit + '</span></div>';
             });
             html += '<div class="total"><span>Your price</span><span>' + fmt(total) + unit + '</span></div>';
-            if(monthlyBilling){
-              var perVisitEquivalent = computePerVisitTotal(freq, dogs, state.yard, state.extras) * visits;
-              var savings = perVisitEquivalent - total;
-              if(savings > 0){
-                html += '<div class="savings-line">You saved ' + fmt(savings) + '/mo by prepaying</div>';
-              }
-            }
             document.getElementById('quote-breakdown').innerHTML = html;
 
             var lotHint = document.getElementById('lot-size-hint');
             if(lotHint){ lotHint.style.display = (state.yard === 'large') ? '' : 'none'; }
 
-            var billingLabel = (freq === 'onetime') ? '' : (billing === 'perVisit' ? 'Pay-per-visit, ' : 'Prepay monthly, ');
-            var summary = billingLabel + plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + "total " + fmt(total) + unit;
+            var billingLabel = (freq === 'onetime') ? '' : 'Billed monthly, ';
+            var summary = billingLabel + plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + (discountOn ? "15% discount applied, " : "") + "total " + fmt(total) + unit;
             document.getElementById('q-summary').value = summary;
 
             document.getElementById('q-plan').value = plan.label;
-            document.getElementById('q-billing').value = (freq === 'onetime') ? 'One-time' : (billing === 'perVisit' ? 'Pay per visit' : 'Prepay monthly');
+            document.getElementById('q-billing').value = (freq === 'onetime') ? 'One-time' : 'Monthly';
             document.getElementById('q-dogs').value = dogs;
             document.getElementById('q-yard').value = (state.yard === 'large') ? 'Large/wooded' : 'Standard';
             document.getElementById('q-extras').value = state.extras.length ? state.extras.map(function(e){ return extraPrices[e] ? extraPrices[e].label : e; }).join(', ') : 'None';
@@ -1255,7 +1232,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </summary>
         <div class="faq-answer">
-          <p>You choose: prepay for the month and lock in our lowest rate (we send an invoice before your next round of visits begins), or pay per visit with no monthly commitment — you're only charged after each cleaning, so a skipped visit is simply a visit you're not billed for.</p>
+          <p>Plans are billed monthly at the rates on this page. We send you an invoice before your next round of visits begins.</p>
         </div>
       </details>
 
