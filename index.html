@@ -38,7 +38,7 @@
     "https://nextdoor.com/page/pine-paw-yard-cleaning-saint-paul-mn"
   ],
   "description": "Affordable dog waste removal and yard sanitation service serving St. Paul, MN and nearby suburbs. Locally owned, no contracts, year-round service. 15% off for seniors, veterans, and service dog households.",
-  "priceRange": "$15-$95",
+  "priceRange": "$18-$45",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "St. Paul",
@@ -60,10 +60,8 @@
     { "@type": "City", "name": "Woodbury, MN" }
   ],
   "makesOffer": [
-    { "@type": "Offer", "name": "Every Other Week dog waste removal", "price": "20", "priceCurrency": "USD", "description": "Per cleaning, 1 dog" },
-    { "@type": "Offer", "name": "Weekly dog waste removal", "price": "17", "priceCurrency": "USD", "description": "Per cleaning, 1 dog" },
-    { "@type": "Offer", "name": "Twice a Week dog waste removal", "price": "15", "priceCurrency": "USD", "description": "Per cleaning, 1 dog" },
-    { "@type": "Offer", "name": "One-Time dog waste cleanup", "price": "95", "priceCurrency": "USD", "description": "1 dog" },
+    { "@type": "Offer", "name": "Recurring dog waste removal (every other week, weekly, or twice per week)", "price": "18", "priceCurrency": "USD", "description": "Per cleaning, 1 dog. Same price on any schedule." },
+    { "@type": "Offer", "name": "One-Time dog waste cleanup", "price": "45", "priceCurrency": "USD", "description": "1 dog" },
     { "@type": "Offer", "name": "15% discount for seniors, veterans, and service dog households", "description": "Available on every plan. Let us know when you book." }
   ]
 }
@@ -302,6 +300,29 @@
   .faq-answer{padding:0 24px 22px;}
   .faq-answer p{font-size:14px;color:#4a4436;}
 
+  /* ---------- PRICING: flat rate + frequency cards ---------- */
+  .rate{margin:8px 0 22px;}
+  .rate-main{font-family:'Fraunces',serif;color:var(--paper);line-height:1;}
+  .rate-amt{font-size:64px;font-weight:600;color:var(--honey);letter-spacing:-0.02em;}
+  .rate-unit{font-size:24px;font-weight:500;margin-left:6px;}
+  .rate-sub{font-family:'Inter';font-size:15px;color:#cfd6c9;margin-top:10px;}
+  .freq-grid{display:grid;gap:12px;}
+  @media(min-width:760px){.freq-grid{grid-template-columns:repeat(3,1fr);}}
+  .freq-card{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--pine);border:1px solid rgba(255,255,255,0.16);border-radius:14px;padding:18px 20px;cursor:pointer;transition:background .15s,border-color .15s;}
+  .freq-card:hover,.freq-card:focus-visible{background:rgba(255,255,255,0.08);border-color:var(--honey);}
+  .freq-card:focus-visible{outline:2px solid var(--honey);outline-offset:2px;}
+  .freq-card.featured{border-color:var(--honey);}
+  .freq-card h4{font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--paper);}
+  .freq-card h4 .tag{display:block;font-family:'IBM Plex Mono';font-size:10.5px;font-weight:500;color:var(--honey);text-transform:uppercase;letter-spacing:0.05em;margin-top:3px;}
+  .freq-card p{font-family:'Inter';font-size:14px;color:#cfd6c9;margin-top:4px;}
+  .onetime-card{margin-top:12px;}
+  .onetime-card > div:first-child{flex:1;}
+  .onetime-price{text-align:right;}
+  .onetime-amt{display:block;font-family:'IBM Plex Mono';font-size:20px;color:var(--honey);}
+  .onetime-sub{display:block;font-family:'IBM Plex Mono';font-size:12.5px;color:#a7b09f;margin-top:2px;}
+  @media(max-width:480px){.rate-amt{font-size:52px;}.rate-unit{font-size:20px;}}
+  @media(max-width:560px){.onetime-card{flex-wrap:wrap;row-gap:10px;}.onetime-card > div:first-child{flex:1 1 calc(100% - 50px);order:1;}.onetime-card .plan-chevron{order:2;}.onetime-price{order:3;width:100%;text-align:left;display:flex;align-items:baseline;gap:10px;}.onetime-amt,.onetime-sub{display:inline;margin-top:0;}}
+
   /* ---------- PRICING TABLE ---------- */
   .price-table-wrap{overflow-x:auto;border-radius:16px;border:1px solid rgba(255,255,255,0.14);background:transparent;}
   .price-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px;}
@@ -530,7 +551,7 @@
       <h1>Clean yards for happy paws.</h1>
       <p class="lead">We do the dirty work, so you don't have to. Locally owned, affordable, no contracts, year-round service.</p>
       <div class="hero-price-block">
-        <p class="hero-price-note">Cleanings start at $15.</p>
+        <p class="hero-price-note">Starting at $18 per cleaning.</p>
         <a href="#quote" class="btn btn-honey hero-price-cta">Get my price</a>
       </div>
     </div>
@@ -669,41 +690,28 @@
             <span class="eyebrow">Pricing</span>
             <span class="accordion-title">Choose your frequency.</span>
           </span>
-          <p class="accordion-intro">Pay per cleaning, charged on cleaning day. No contracts.</p>
+          <p class="accordion-intro">One price per cleaning, whatever schedule you choose. Charged on cleaning day. No contracts.</p>
         </div>
         <div class="accordion-body">
-      <div class="price-table-wrap">
-        <table class="price-table">
-          <thead>
-            <tr><th>Plan</th><th>Visits/mo</th><th>1 Dog</th><th>Each additional dog</th></tr>
-          </thead>
-          <tbody>
-            <tr class="price-row" data-plan="eow" role="button" tabindex="0" aria-label="Choose Every Other Week plan and get your price">
-              <td class="plan-name"><span class="plan-name-row"><span class="plan-name-text">Every Other Week</span><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span></td>
-              <td class="amt-sub" data-label="Visits/mo">2</td>
-              <td class="amt" data-label="1 Dog">$20/cleaning</td>
-              <td class="amt-sub" data-label="Each additional dog">+$5/cleaning</td>
-            </tr>
-            <tr class="featured price-row" data-plan="weekly" role="button" tabindex="0" aria-label="Choose Weekly plan and get your price">
-              <td class="plan-name"><span class="plan-name-row"><span class="plan-name-text">Weekly<span class="tag">Most popular</span></span><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span></td>
-              <td class="amt-sub" data-label="Visits/mo">4</td>
-              <td class="amt" data-label="1 Dog">$17/cleaning</td>
-              <td class="amt-sub" data-label="Each additional dog">+$5/cleaning</td>
-            </tr>
-            <tr class="price-row" data-plan="twice" role="button" tabindex="0" aria-label="Choose Twice a Week plan and get your price">
-              <td class="plan-name"><span class="plan-name-row"><span class="plan-name-text">Twice a Week</span><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span></td>
-              <td class="amt-sub" data-label="Visits/mo">8</td>
-              <td class="amt" data-label="1 Dog">$15/cleaning</td>
-              <td class="amt-sub" data-label="Each additional dog">+$5/cleaning</td>
-            </tr>
-            <tr class="price-row" data-plan="onetime" role="button" tabindex="0" aria-label="Choose One-Time cleaning and get your price">
-              <td class="plan-name"><span class="plan-name-row"><span class="plan-name-text">One-Time</span><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span></td>
-              <td class="amt-sub" data-label="Visits/mo">1 visit</td>
-              <td class="amt" data-label="1 Dog">$95</td>
-              <td class="amt-sub" data-label="Each additional dog">+$10</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="rate">
+        <p class="rate-main"><span class="rate-amt">$18</span> <span class="rate-unit">per cleaning</span></p>
+        <p class="rate-sub">+$5 per extra dog</p>
+      </div>
+      <div class="freq-grid">
+        <div class="freq-card price-row" data-plan="eow" role="button" tabindex="0" aria-label="Choose Every Other Week and get your price">
+          <div><h4>Every Other Week</h4><p>1 cleaning every 2 weeks</p></div><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="freq-card featured price-row" data-plan="weekly" role="button" tabindex="0" aria-label="Choose Weekly and get your price">
+          <div><h4>Weekly <span class="tag">Most popular</span></h4><p>1 cleaning per week</p></div><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="freq-card price-row" data-plan="twice" role="button" tabindex="0" aria-label="Choose Twice per Week and get your price">
+          <div><h4>Twice per Week</h4><p>2 cleanings per week</p></div><span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </div>
+      </div>
+      <div class="freq-card onetime-card price-row" data-plan="onetime" role="button" tabindex="0" aria-label="Choose One-Time cleaning and get your price">
+        <div><h4>One-Time</h4><p>A single cleanup, no schedule</p></div>
+        <div class="onetime-price"><span class="onetime-amt">$45</span><span class="onetime-sub">+$10 per extra dog</span></div>
+        <span class="plan-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
       </div>
       <div class="price-note mono">
         <div>Standard yards are 1/2 acre or less</div>
@@ -793,7 +801,7 @@
           <div class="quote-question">How often would you like service?</div>
           <div class="quote-options single-col" data-group="frequency">
             <button type="button" class="quote-opt" data-value="weekly">Weekly <span class="badge">Most popular</span></button>
-            <button type="button" class="quote-opt" data-value="twice">Twice a Week</button>
+            <button type="button" class="quote-opt" data-value="twice">Twice per Week</button>
             <button type="button" class="quote-opt" data-value="eow">Every Other Week</button>
             <button type="button" class="quote-opt" data-value="onetime">One-Time</button>
           </div>
@@ -942,10 +950,10 @@
           var TOTAL_STEPS = 3;
 
           var basePrices = {
-            weekly:{label:"Weekly", prepay:68, perVisit:17, mo:4},
-            twice:{label:"Twice a Week", prepay:120, perVisit:15, mo:8},
-            eow:{label:"Every Other Week", prepay:40, perVisit:20, mo:2},
-            onetime:{label:"One-Time", prepay:95, perVisit:95, mo:1}
+            weekly:{label:"Weekly", prepay:68, perVisit:18, mo:4},
+            twice:{label:"Twice per Week", prepay:120, perVisit:18, mo:8},
+            eow:{label:"Every Other Week", prepay:40, perVisit:18, mo:2},
+            onetime:{label:"One-Time", prepay:45, perVisit:45, mo:1}
           };
           var extraDogRate = { prepay:5, perVisit:5 }; // per visit; onetime uses flat rate below
           var onetimeExtraDog = 10;
@@ -1254,7 +1262,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </summary>
         <div class="faq-answer">
-          <p>You pay per cleaning, with no contracts. We keep a card on file and charge it on cleaning day, so if you skip or pause, you're not charged.</p>
+          <p>You pay per cleaning, with no contracts. It's the same price whether you choose every other week, weekly, or twice per week. We keep a card on file and charge it on cleaning day, so if you skip or pause, you're not charged.</p>
         </div>
       </details>
 
@@ -1274,7 +1282,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </summary>
         <div class="faq-answer">
-          <p>No problem. While our free first cleanup offer is running, your first cleanup is on us, however much buildup there is. Otherwise, we treat a first visit on a yard with heavy buildup as a One-Time Cleaning to get it caught up, and your regular plan pricing starts with your next scheduled visit.</p>
+          <p>No problem. While our free first cleanup offer is running, your first cleanup is on us, however much buildup there is. Otherwise, a first cleanup on a yard with heavy buildup is billed as a One-Time Cleaning to get it caught up, and regular pricing starts with your next scheduled visit.</p>
         </div>
       </details>
 
