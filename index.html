@@ -383,6 +383,7 @@
   .quote-step.active{display:block;animation:fadein .25s ease;}
   @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
   .quote-question{font-family:'Fraunces';font-weight:600;font-size:22px;color:var(--pine-deep);margin-bottom:18px;}
+  .quote-question-sm{font-size:18px;margin-top:22px;margin-bottom:12px;}
   .quote-options{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-bottom:8px;}
   .quote-options.single-col{grid-template-columns:1fr;}
   .quote-opt{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;font-family:'Inter';font-size:14.5px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left;transition:all .15s;position:relative;}
@@ -722,7 +723,7 @@
       <div class="addons-inline">
         <span class="addons-inline-label">Add-ons</span>
         <div class="addons">
-          <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that knocks out the odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15/cleaning</p></div>
+          <div class="addon"><h4>Yard deodorizing</h4><p>A pet-safe spray that knocks out the odor and keeps your grass smelling fresh between visits.</p><p class="addon-price">+$15 per treatment. Every cleaning, weekly, monthly, or just once.</p></div>
           <div class="addon"><h4>Off-site removal</h4><p>We'll haul the waste away with us instead of leaving it in your bin — done.</p><p class="addon-price">+$5/cleaning</p></div>
         </div>
       </div>
@@ -823,8 +824,17 @@
           </div>
           <div class="quote-question" style="margin-top:26px;">Want any extras? <span class="sub" style="font-family:'Inter';font-weight:400;">(optional)</span></div>
           <div class="quote-options single-col" data-group="extras" data-multi="true">
-            <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="deodorize"><span class="check-box" aria-hidden="true"></span><span class="check-label">Yard deodorizing <span class="sub">$15/cleaning</span></span></button>
+            <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="deodorize"><span class="check-box" aria-hidden="true"></span><span class="check-label">Yard deodorizing <span class="sub">$15 per treatment</span></span></button>
             <button type="button" class="quote-opt quote-opt-check" role="checkbox" aria-checked="false" data-value="offsite"><span class="check-box" aria-hidden="true"></span><span class="check-label">Off-site removal <span class="sub">$5/cleaning</span></span></button>
+          </div>
+          <div id="deo-freq-wrap" hidden>
+            <div class="quote-question quote-question-sm">How often should we deodorize?</div>
+            <div class="quote-options" data-group="deoFreq">
+              <button type="button" class="quote-opt selected" data-value="every">Every cleaning</button>
+              <button type="button" class="quote-opt" data-value="weekly">Once per week</button>
+              <button type="button" class="quote-opt" data-value="monthly">Once per month</button>
+              <button type="button" class="quote-opt" data-value="once">Just once</button>
+            </div>
           </div>
         </div>
 
@@ -944,7 +954,20 @@
 
       <script>
         (function(){
-          var state = { dogs:null, frequency:null, billing:null, yard:null, extras:[] };
+          var state = { dogs:null, frequency:null, billing:null, yard:null, extras:[], deoFreq:'every' };
+
+          var deoFreqLabels = { every:'every cleaning', weekly:'once per week', monthly:'once per month', once:'just once' };
+          function updateDeoFreq(){
+            var wrap = document.getElementById('deo-freq-wrap');
+            if(!wrap) return;
+            var show = state.extras.indexOf('deodorize') > -1 && state.frequency && state.frequency !== 'onetime';
+            wrap.hidden = !show;
+            var weeklyBtn = wrap.querySelector('[data-value="weekly"]');
+            var weeklyOk = state.frequency === 'twice';
+            if(weeklyBtn){ weeklyBtn.hidden = !weeklyOk; }
+            if(!weeklyOk && state.deoFreq === 'weekly'){ state.deoFreq = 'every'; }
+            wrap.querySelectorAll('.quote-opt').forEach(function(b){ b.classList.toggle('selected', b.dataset.value === state.deoFreq); });
+          }
 
           var current = 1;
           var TOTAL_STEPS = 3;
@@ -1002,6 +1025,7 @@
               gtag('event', 'quote_step_viewed', { step: n });
               if(n === TOTAL_STEPS){ gtag('event', 'quote_price_viewed'); }
             }
+            updateDeoFreq();
             if(n === TOTAL_STEPS){ computeQuote(); }
             var qCard = document.querySelector('.quote-card');
             if(qCard){ qCard.scrollTop = 0; }
@@ -1037,6 +1061,7 @@
                   btn.classList.add('selected');
                   state[key] = val;
                 }
+                updateDeoFreq();
                 validateNext(current);
               });
             });
@@ -1105,9 +1130,11 @@
               total += yf;
             }
 
+            var deoPeriodic = (recurring && state.extras.indexOf('deodorize') > -1 && state.deoFreq !== 'every') ? state.deoFreq : null;
             state.extras.forEach(function(e){
               var ex = extraPrices[e];
               if(!ex) return;
+              if(e === 'deodorize' && deoPeriodic) return;
               var amt = monthlyBilling ? ex.amt * visits : ex.amt;
               var freqNote = monthlyBilling ? " (every visit)" : (recurring ? " (charged each visit)" : "");
               lines.push({ label: ex.label + freqNote, amt: amt });
@@ -1120,26 +1147,30 @@
               lines.push({ label: "15% discount (senior, veteran, or service dog household)", amt: discount, neg: true });
               total = Math.round((total - discount) * 100) / 100;
             }
+            var deoAmt = extraPrices.deodorize.amt;
+            if(deoPeriodic && discountOn){ deoAmt = Math.round(deoAmt * 0.85 * 100) / 100; }
+            var deoNote = deoPeriodic ? (deoPeriodic === 'once' ? fmt(deoAmt) + ' on your first cleaning' : fmt(deoAmt) + ' ' + deoFreqLabels[deoPeriodic]) : '';
 
             var html = '';
             lines.forEach(function(l){
               html += '<div class="line"><span>' + l.label + '</span><span>' + (l.neg ? '\u2212' : '') + fmt(l.amt) + unit + '</span></div>';
             });
             html += '<div class="total"><span>Your price</span><span>' + fmt(total) + unit + '</span></div>';
+            if(deoPeriodic){ html += '<div class="line"><span>Plus yard deodorizing</span><span>' + deoNote + '</span></div>'; }
             document.getElementById('quote-breakdown').innerHTML = html;
 
             var lotHint = document.getElementById('lot-size-hint');
             if(lotHint){ lotHint.style.display = (state.yard === 'large') ? '' : 'none'; }
 
             var billingLabel = (freq === 'onetime') ? '' : 'Billed per cleaning, ';
-            var summary = billingLabel + plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + (discountOn ? "15% discount applied, " : "") + "total " + fmt(total) + unit;
+            var summary = billingLabel + plan.label + ", " + dogs + " dog(s), " + (state.yard==='large'?'large/wooded yard, ':'') + (state.extras.length ? "extras: " + state.extras.join(', ') + ", " : "no extras, ") + (discountOn ? "15% discount applied, " : "") + "total " + fmt(total) + unit + (deoPeriodic ? ", plus deodorizing " + deoNote : "");
             document.getElementById('q-summary').value = summary;
 
             document.getElementById('q-plan').value = plan.label;
             document.getElementById('q-billing').value = (freq === 'onetime') ? 'One-time' : 'Per cleaning';
             document.getElementById('q-dogs').value = dogs;
             document.getElementById('q-yard').value = (state.yard === 'large') ? 'Large/wooded' : 'Standard';
-            document.getElementById('q-extras').value = state.extras.length ? state.extras.map(function(e){ return extraPrices[e] ? extraPrices[e].label : e; }).join(', ') : 'None';
+            document.getElementById('q-extras').value = state.extras.length ? state.extras.map(function(e){ var l = extraPrices[e] ? extraPrices[e].label : e; if(e === 'deodorize' && recurring){ l += ' (' + deoFreqLabels[state.deoFreq] + ')'; } return l; }).join(', ') : 'None';
             document.getElementById('q-total').value = fmt(total) + unit;
 
             document.getElementById('book-btn').textContent = "Book at " + fmt(total) + unit + " →";
